@@ -1,6 +1,5 @@
 #include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK, TEST_CASE
 
-// #include <boost/rational.hpp>  // for rational
 #include <fractions/fractions.hpp>  // for Fraction
 #include <ostream>                  // for Fraction, don't remove
 #include <rattrig/trigonom.hpp>     // for archimedes
