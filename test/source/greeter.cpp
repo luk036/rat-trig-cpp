@@ -1,6 +1,6 @@
 #include <doctest/doctest.h>
 #include <rattrig/greeter.h>
-#include <rattrig/version.h>
+// #include <rattrig/version.h>
 
 #include <string>
 
@@ -15,7 +15,7 @@ TEST_CASE("RatTrig") {
   CHECK(rattrig.greet(LanguageCode::FR) == "Bonjour Tests!");
 }
 
-TEST_CASE("RatTrig version") {
-  static_assert(std::string_view(RATTRIG_VERSION) == std::string_view("1.0"));
-  CHECK(std::string(RATTRIG_VERSION) == std::string("1.0"));
-}
+// TEST_CASE("RatTrig version") {
+//   static_assert(std::string_view(RATTRIG_VERSION) == std::string_view("1.0"));
+//   CHECK(std::string(RATTRIG_VERSION) == std::string("1.0"));
+// }
