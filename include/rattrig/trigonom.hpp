@@ -32,27 +32,27 @@
 
 namespace rattrig {
 
-  /**
-   * @brief Calculates the quadrea of a triangle using Archimedes' formula.
-   *
-   * Takes the lengths of the triangle's three sides as parameters q1, q2, q3.
-   * Returns the quadrea calculation result.
-   *
-   * Can also be used to check if a quadraple of lengths Q1, Q2, Q3, Q4 is on a
-   * circle.
-   *
-   * @param[in] q_1 Represents the length of the first side of the triangle.
-   * @param[in] q_2 Represents the length of the second side of the triangle.
-   * @param[in] q_3 The parameter `q_3` represents the length of the third side of
-   * the triangle.
-   *
-   * @return The function `archimedes` returns the area of a triangle computed
-   * using Archimedes' formula, given the lengths of the 3 sides.
-   *
-   */
-  template <typename T> constexpr T archimedes(const T &q_1, const T &q_2, const T &q_3) {
-    T temp = q_1 + q_2 - q_3;
-    return 4 * q_1 * q_2 - temp * temp;
-  }
+    /**
+     * @brief Calculates the quadrea of a triangle using Archimedes' formula.
+     *
+     * Takes the lengths of the triangle's three sides as parameters q1, q2, q3.
+     * Returns the quadrea calculation result.
+     *
+     * Can also be used to check if a quadraple of lengths Q1, Q2, Q3, Q4 is on a
+     * circle.
+     *
+     * @param[in] q_1 Represents the length of the first side of the triangle.
+     * @param[in] q_2 Represents the length of the second side of the triangle.
+     * @param[in] q_3 The parameter `q_3` represents the length of the third side of
+     * the triangle.
+     *
+     * @return The function `archimedes` returns the area of a triangle computed
+     * using Archimedes' formula, given the lengths of the 3 sides.
+     *
+     */
+    template <typename T> constexpr T archimedes(const T &q_1, const T &q_2, const T &q_3) {
+        T temp = q_1 + q_2 - q_3;
+        return 4 * q_1 * q_2 - temp * temp;
+    }
 
 }  // namespace rattrig
