@@ -11,7 +11,7 @@
 
 # 📐 rat-trig-cpp
 
-A C++ implementation of the Rational Trigonometry library.
+A Modern C++ implementation of the Rational Trigonometry library.
 
 ## ✨ Features
 
