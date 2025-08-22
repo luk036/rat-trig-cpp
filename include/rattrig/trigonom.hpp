@@ -30,6 +30,8 @@
  * work with.
  */
 
+#include <vector>
+
 namespace rattrig {
 
     /**
@@ -55,4 +57,81 @@ namespace rattrig {
         return 4 * q_1 * q_2 - temp * temp;
     }
 
+    /**
+     * @brief Calculates the cross product of two 2D vectors.
+     *
+     * @param v_1 First vector as std::vector<T> of size 2
+     * @param v_2 Second vector as std::vector<T> of size 2
+     * @return Cross product of the two vectors
+     */
+    template <typename T> constexpr T cross(const std::vector<T> &v_1, const std::vector<T> &v_2) {
+        return v_1[0] * v_2[1] - v_1[1] * v_2[0];
+    }
+
+    /**
+     * @brief Calculates the dot product of two 2D vectors.
+     *
+     * @param v_1 First vector as std::vector<T> of size 2
+     * @param v_2 Second vector as std::vector<T> of size 2
+     * @return Dot product of the two vectors
+     */
+    template <typename T> constexpr T dot(const std::vector<T> &v_1, const std::vector<T> &v_2) {
+        return v_1[0] * v_2[0] + v_1[1] * v_2[1];
+    }
+
+    /**
+     * @brief Calculates the quadrance (squared length) of a 2D vector.
+     *
+     * @param v Vector as std::vector<T> of size 2
+     * @return Quadrance of the vector
+     */
+    template <typename T> constexpr T quad(const std::vector<T> &v) {
+        return v[0] * v[0] + v[1] * v[1];
+    }
+
+    /**
+     * @brief Calculates the spread between two 2D vectors.
+     *
+     * The spread is defined as the square of the cross product divided by
+     * the product of the quadrances of the two vectors.
+     *
+     * @param v_1 First vector as std::vector<T> of size 2
+     * @param v_2 Second vector as std::vector<T> of size 2
+     * @return Spread between the two vectors
+     */
+    template <typename T> constexpr T spread(const std::vector<T> &v_1, const std::vector<T> &v_2) {
+        T cross_val = cross(v_1, v_2);
+        return (cross_val * cross_val) / (quad(v_1) * quad(v_2));
+    }
+
+    /**
+     * @brief Calculates the third quadrance using the triple quad formula.
+     *
+     * Given two quadrances and the spread between them, calculates the third quadrance.
+     *
+     * @param q_1 First quadrance
+     * @param q_2 Second quadrance
+     * @param s_3 Spread between the two vectors
+     * @return Third quadrance
+     */
+    template <typename T>
+    constexpr T triple_quad_formula(const T &q_1, const T &q_2, const T &s_3) {
+        T sum = q_1 + q_2;
+        return sum * sum - 4 * q_1 * q_2 * (1 - s_3);
+    }
+
+    /**
+     * @brief Calculates the spread using the spread law.
+     *
+     * Given three quadrances of a triangle, calculates the spread.
+     *
+     * @param q_1 First quadrance
+     * @param q_2 Second quadrance
+     * @param q_3 Third quadrance
+     * @return Spread
+     */
+    template <typename T> constexpr T spread_law(const T &q_1, const T &q_2, const T &q_3) {
+        T numerator = q_1 + q_2 - q_3;
+        return 1 - (numerator * numerator) / (4 * q_1 * q_2);
+    }
 }  // namespace rattrig
