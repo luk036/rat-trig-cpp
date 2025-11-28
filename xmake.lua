@@ -22,6 +22,7 @@ add_includedirs("include", { public = true })
 add_includedirs("../fractions-cpp/include", { public = true })
 add_files("test/source/*.cpp")
 add_packages("doctest", "fmt")
+add_tests("default")
 
 -- If you want to known more usage about xmake, please see https://xmake.io
 --
