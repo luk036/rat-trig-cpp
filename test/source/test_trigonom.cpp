@@ -113,29 +113,29 @@ TEST_CASE("Test cross (unit vectors)") {
 }
 
 TEST_CASE("Test quad (int)") {
-    std::vector<int> v = {3, 4};
-    CHECK_EQ(quad(v), 25);
+    std::vector<int> vec = {3, 4};
+    CHECK_EQ(quad(vec), 25);
 }
 
 TEST_CASE("Test quad (double)") {
-    std::vector<double> v = {3.0, 4.0};
-    CHECK_EQ(quad(v), 25.0);
+    std::vector<double> vec = {3.0, 4.0};
+    CHECK_EQ(quad(vec), 25.0);
 }
 
 TEST_CASE("Test quad (rational)") {
-    std::vector<fractions::Fraction<int>> v
+    std::vector<fractions::Fraction<int>> vec
         = {fractions::Fraction<int>(3, 5), fractions::Fraction<int>(4, 5)};
-    CHECK_EQ(quad(v), fractions::Fraction<int>(1, 1));
+    CHECK_EQ(quad(vec), fractions::Fraction<int>(1, 1));
 }
 
 TEST_CASE("Test quad (diagonal)") {
-    std::vector<int> v = {1, 1};
-    CHECK_EQ(quad(v), 2);
+    std::vector<int> vec = {1, 1};
+    CHECK_EQ(quad(vec), 2);
 }
 
 TEST_CASE("Test quad (zero)") {
-    std::vector<int> v = {0, 0};
-    CHECK_EQ(quad(v), 0);
+    std::vector<int> vec = {0, 0};
+    CHECK_EQ(quad(vec), 0);
 }
 
 TEST_CASE("Test spread (rational)") {
@@ -196,34 +196,34 @@ TEST_CASE("Test spread_law (zero)") {
 TEST_CASE("Test triple_quad_formula (int)") {
     int q_1 = 5;
     int q_2 = 25;
-    int s_3 = 0;  // Fraction(4, 125) would be 0 as int
-    CHECK_EQ(triple_quad_formula(q_1, q_2, s_3), 400);
+    int spr_val = 0;  // Fraction(4, 125) would be 0 as int
+    CHECK_EQ(triple_quad_formula(q_1, q_2, spr_val), 400);
 }
 
 TEST_CASE("Test triple_quad_formula (double)") {
     double q_1 = 5.0;
     double q_2 = 25.0;
-    double s_3 = 0.032;  // 4/125 = 0.032
-    CHECK_EQ(triple_quad_formula(q_1, q_2, s_3), 416.0);
+    double spr_val = 0.032;  // 4/125 = 0.032
+    CHECK_EQ(triple_quad_formula(q_1, q_2, spr_val), 416.0);
 }
 
 TEST_CASE("Test triple_quad_formula (rational)") {
     fractions::Fraction<int> q_1(5);
     fractions::Fraction<int> q_2(25);
-    fractions::Fraction<int> s_3(4, 125);
-    CHECK_EQ(triple_quad_formula(q_1, q_2, s_3), fractions::Fraction<int>(416));
+    fractions::Fraction<int> spr_val(4, 125);
+    CHECK_EQ(triple_quad_formula(q_1, q_2, spr_val), fractions::Fraction<int>(416));
 }
 
 TEST_CASE("Test triple_quad_formula (max spread)") {
     int q_1 = 1;
     int q_2 = 1;
-    int s_3 = 1;
-    CHECK_EQ(triple_quad_formula(q_1, q_2, s_3), 4);
+    int spr_val = 1;
+    CHECK_EQ(triple_quad_formula(q_1, q_2, spr_val), 4);
 }
 
 TEST_CASE("Test triple_quad_formula (zero spread)") {
     int q_1 = 1;
     int q_2 = 1;
-    int s_3 = 0;
-    CHECK_EQ(triple_quad_formula(q_1, q_2, s_3), 0);
+    int spr_val = 0;
+    CHECK_EQ(triple_quad_formula(q_1, q_2, spr_val), 0);
 }

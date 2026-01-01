@@ -40,14 +40,14 @@ auto main(int argc, char** argv) -> int {
         return 0;
     }
 
-    auto langIt = languages.find(language);
-    if (langIt == languages.end()) {
+    auto lang_iter = languages.find(language);
+    if (lang_iter == languages.end()) {
         std::cerr << "unknown language code: " << language << std::endl;
         return 1;
     }
 
-    rattrig::RatTrig rattrig(name);
-    std::cout << rattrig.greet(langIt->second) << std::endl;
+    rattrig::RatTrig rattrig_app(name);
+    std::cout << rattrig_app.greet(lang_iter->second) << std::endl;
 
     return 0;
 }

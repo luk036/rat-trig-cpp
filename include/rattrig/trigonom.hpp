@@ -82,11 +82,11 @@ namespace rattrig {
     /**
      * @brief Calculates the quadrance (squared length) of a 2D vector.
      *
-     * @param v Vector as std::vector<T> of size 2
+     * @param vec Vector as std::vector<T> of size 2
      * @return Quadrance of the vector
      */
-    template <typename T> constexpr T quad(const std::vector<T> &v) {
-        return v[0] * v[0] + v[1] * v[1];
+    template <typename T> constexpr T quad(const std::vector<T> &vec) {
+        return vec[0] * vec[0] + vec[1] * vec[1];
     }
 
     /**
@@ -111,13 +111,13 @@ namespace rattrig {
      *
      * @param q_1 First quadrance
      * @param q_2 Second quadrance
-     * @param s_3 Spread between the two vectors
+     * @param spr_val Spread between the two vectors
      * @return Third quadrance
      */
     template <typename T>
-    constexpr T triple_quad_formula(const T &q_1, const T &q_2, const T &s_3) {
+    constexpr T triple_quad_formula(const T &q_1, const T &q_2, const T &spr_val) {
         T sum = q_1 + q_2;
-        return sum * sum - 4 * q_1 * q_2 * (1 - s_3);
+        return sum * sum - 4 * q_1 * q_2 * (1 - spr_val);
     }
 
     /**
