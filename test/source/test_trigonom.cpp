@@ -234,14 +234,14 @@ TEST_CASE("Test triple_quad_formula (zero spread)") {
 TEST_CASE("Property-based test: dot product commutativity") {
     rc::check("dot(v1, v2) == dot(v2, v1)",
               [](const std::vector<int>& v1, const std::vector<int>& v2) {
-                  RC_PRE(v1.size() == 2 && v2.size() == 2);
+                  RC_PRE(v1.size() == 2ULL && v2.size() == 2ULL);
                   RC_ASSERT(dot(v1, v2) == dot(v2, v1));
               });
 }
 
 TEST_CASE("Property-based test: dot product with zero vector") {
     rc::check("dot(v, {0, 0}) == 0", [](const std::vector<int>& v) {
-        RC_PRE(v.size() == 2);
+        RC_PRE(v.size() == 2ULL);
         std::vector<int> zero = {0, 0};
         RC_ASSERT(dot(v, zero) == 0);
     });
@@ -250,21 +250,21 @@ TEST_CASE("Property-based test: dot product with zero vector") {
 TEST_CASE("Property-based test: cross product anti-commutativity") {
     rc::check("cross(v1, v2) == -cross(v2, v1)",
               [](const std::vector<int>& v1, const std::vector<int>& v2) {
-                  RC_PRE(v1.size() == 2 && v2.size() == 2);
+                  RC_PRE(v1.size() == 2ULL && v2.size() == 2ULL);
                   RC_ASSERT(cross(v1, v2) == -cross(v2, v1));
               });
 }
 
 TEST_CASE("Property-based test: cross product with parallel vectors") {
     rc::check("cross(v, v) == 0", [](const std::vector<int>& v) {
-        RC_PRE(v.size() == 2);
+        RC_PRE(v.size() == 2ULL);
         RC_ASSERT(cross(v, v) == 0);
     });
 }
 
 TEST_CASE("Property-based test: quad is always non-negative") {
     rc::check("quad(v) >= 0", [](const std::vector<int>& v) {
-        RC_PRE(v.size() == 2);
+        RC_PRE(v.size() == 2ULL);
         RC_ASSERT(quad(v) >= 0);
     });
 }
@@ -279,7 +279,7 @@ TEST_CASE("Property-based test: quad of zero vector is zero") {
 TEST_CASE("Property-based test: spread is always between 0 and 1") {
     rc::check("0 <= spread(v1, v2) <= 1",
               [](const std::vector<double>& v1, const std::vector<double>& v2) {
-                  RC_PRE(v1.size() == 2 && v2.size() == 2);
+                  RC_PRE(v1.size() == 2ULL && v2.size() == 2ULL);
                   RC_PRE(v1[0] != 0 || v1[1] != 0);
                   RC_PRE(v2[0] != 0 || v2[1] != 0);
                   double spr = spread(v1, v2);
@@ -289,7 +289,7 @@ TEST_CASE("Property-based test: spread is always between 0 and 1") {
 
 TEST_CASE("Property-based test: spread of parallel vectors is zero") {
     rc::check("spread(v, v) == 0", [](const std::vector<int>& v) {
-        RC_PRE(v.size() == 2);
+        RC_PRE(v.size() == 2ULL);
         RC_PRE(v[0] != 0 || v[1] != 0);
         RC_ASSERT(spread(v, v) == 0);
     });
@@ -297,7 +297,7 @@ TEST_CASE("Property-based test: spread of parallel vectors is zero") {
 
 TEST_CASE("Property-based test: spread of orthogonal vectors is one") {
     rc::check("spread(v1, v2) == 1 when orthogonal", [](const std::vector<int>& v1) {
-        RC_PRE(v1.size() == 2);
+        RC_PRE(v1.size() == 2ULL);
         RC_PRE(v1[0] != 0 || v1[1] != 0);
         std::vector<int> v2 = {-v1[1], v1[0]};
         RC_ASSERT(spread(v1, v2) == 1);
