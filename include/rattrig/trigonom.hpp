@@ -32,6 +32,12 @@
 
 #include <vector>
 
+/// @brief Rational Trigonometry library namespace.
+///
+/// This namespace contains functions implementing rational trigonometry,
+/// an alternative approach to classical trigonometry based on rational
+/// numbers and geometric concepts like quadrance and spread instead of
+/// angles and trigonometric functions.
 namespace rattrig {
 
     /**
