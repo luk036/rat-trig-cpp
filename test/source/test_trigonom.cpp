@@ -1,11 +1,15 @@
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK, TEST_CASE
 
 #include <fractions/fractions.hpp>  // for Fraction
-#include <ostream>                  // for Fraction, don't remove
-#include <rattrig/trigonom.hpp>     // for archimedes
+#include <limits>                    // for numeric_limits
+#include <ostream>                   // for Fraction, don't remove
+#include <rattrig/trigonom.hpp>      // for archimedes
+#include <stdexcept>                 // for runtime_error
 
 using namespace rattrig;
 
+// Traditional unit tests
 TEST_CASE("Test archimedes (int)") {
     int q_1 = 2;
     int q_2 = 4;
@@ -228,20 +232,141 @@ TEST_CASE("Test triple_quad_formula (zero spread)") {
     CHECK_EQ(triple_quad_formula(q_1, q_2, spr_val), 0);
 }
 
+// Error handling tests
+TEST_CASE("Test error handling - invalid vector size") {
+    std::vector<int> v1 = {1};  // Wrong size
+    std::vector<int> v2 = {1, 2};
+    
+    CHECK_THROWS_AS(quad(v1), TrigonomError);
+    CHECK_THROWS_AS(dot(v1, v2), TrigonomError);
+    CHECK_THROWS_AS(cross(v1, v2), TrigonomError);
+}
+
+TEST_CASE("Test error handling - zero quadrance in spread") {
+    std::vector<int> zero = {0, 0};
+    std::vector<int> v = {1, 2};
+    
+    CHECK_THROWS_AS(spread(zero, v), TrigonomError);
+    CHECK_THROWS_AS(spread(v, zero), TrigonomError);
+}
+
+TEST_CASE("Test error handling - zero quadrance in spread_law") {
+    CHECK_THROWS_AS(spread_law(0, 1, 1), TrigonomError);
+    CHECK_THROWS_AS(spread_law(1, 0, 1), TrigonomError);
+}
+
+// 3D operations tests
+TEST_CASE("Test dot3d (double)") {
+    std::vector<double> v1 = {1.0, 2.0, 3.0};
+    std::vector<double> v2 = {4.0, 5.0, 6.0};
+    CHECK_EQ(dot3d(v1, v2), 32.0);
+}
+
+TEST_CASE("Test cross3d (double)") {
+    std::vector<double> v1 = {1.0, 2.0, 3.0};
+    std::vector<double> v2 = {4.0, 5.0, 6.0};
+    auto result = cross3d(v1, v2);
+    CHECK_EQ(result[0], -3.0);
+    CHECK_EQ(result[1], 6.0);
+    CHECK_EQ(result[2], -3.0);
+}
+
+TEST_CASE("Test quad3d (double)") {
+    std::vector<double> v = {1.0, 2.0, 3.0};
+    CHECK_EQ(quad3d(v), 14.0);
+}
+
+TEST_CASE("Test spread3d (parallel)") {
+    std::vector<double> v1 = {1.0, 2.0, 3.0};
+    std::vector<double> v2 = {2.0, 4.0, 6.0};
+    CHECK_EQ(spread3d(v1, v2), 0.0);
+}
+
+TEST_CASE("Test spread3d (orthogonal)") {
+    std::vector<double> v1 = {1.0, 0.0, 0.0};
+    std::vector<double> v2 = {0.0, 1.0, 0.0};
+    CHECK_EQ(spread3d(v1, v2), 1.0);
+}
+
+TEST_CASE("Test triple_product (double)") {
+    std::vector<double> v1 = {1.0, 0.0, 0.0};
+    std::vector<double> v2 = {0.0, 1.0, 0.0};
+    std::vector<double> v3 = {0.0, 0.0, 1.0};
+    CHECK_EQ(triple_product(v1, v2, v3), 1.0);
+}
+
+// Triangle solving tests
+TEST_CASE("Test create_triangle") {
+    std::vector<double> a = {0.0, 0.0};
+    std::vector<double> b = {4.0, 0.0};
+    std::vector<double> c = {2.0, 3.0};
+    
+    auto tri = create_triangle(a, b, c);
+    CHECK_EQ(tri.q_ab, 16.0);
+    CHECK(tri.quadrea > 0.0);
+    CHECK(tri.spread_a >= 0.0);
+    CHECK(tri.spread_a <= 1.0);
+}
+
+TEST_CASE("Test solve_triangle_sss") {
+    auto tri = solve_triangle_sss(5.0, 25.0, 20.0);
+    CHECK_EQ(tri.q_ab, 5.0);
+    CHECK_EQ(tri.q_bc, 25.0);
+    CHECK_EQ(tri.q_ca, 20.0);
+    CHECK(tri.quadrea > 0.0);
+}
+
+TEST_CASE("Test solve_triangle_sas") {
+    // Test with known valid triangle: 3-4-5 triangle
+    // For a 3-4-5 triangle, the spread between sides 3 and 4 is 1 - 0^2/(3^2 * 4^2) = 1 (right angle)
+    auto tri = solve_triangle_sas(9.0, 16.0, 1.0);
+    CHECK_EQ(tri.q_ab, 9.0);
+    CHECK_EQ(tri.q_bc, 16.0);
+    CHECK(tri.quadrea > 0.0);
+    CHECK_EQ(tri.spread_c, 1.0);  // Right angle at C
+}
+
+// Transformation tests
+TEST_CASE("Test translate_2d") {
+    std::vector<double> v = {1.0, 2.0};
+    std::vector<double> trans = {3.0, 4.0};
+    auto result = translate_2d(v, trans);
+    CHECK_EQ(result[0], 4.0);
+    CHECK_EQ(result[1], 6.0);
+}
+
+TEST_CASE("Test scale_2d") {
+    std::vector<double> v = {1.0, 2.0};
+    auto result = scale_2d(v, 2.0);
+    CHECK_EQ(result[0], 2.0);
+    CHECK_EQ(result[1], 4.0);
+}
+
+TEST_CASE("Test rotate_2d") {
+    std::vector<double> v = {1.0, 0.0};
+    auto result = rotate_2d(v, 1.0);  // 90 degree rotation
+    CHECK(std::abs(result[0]) < 1e-10);  // Should be near 0
+    CHECK(std::abs(result[1] - 1.0) < 1e-10);  // Should be near 1
+}
+
 #ifdef RAPIDCHECK_H
 #    include <rapidcheck.h>
 
+// Improved property-based tests with better generation
 TEST_CASE("Property-based test: dot product commutativity") {
     rc::check("dot(v1, v2) == dot(v2, v1)",
-              [](const std::vector<int>& v1, const std::vector<int>& v2) {
-                  RC_PRE(v1.size() == 2ULL && v2.size() == 2ULL);
+              []() {
+                  std::vector<int> v1 = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
+                  std::vector<int> v2 = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
+                  RC_PRE(v1.size() == 2 && v2.size() == 2);
                   RC_ASSERT(dot(v1, v2) == dot(v2, v1));
               });
 }
 
 TEST_CASE("Property-based test: dot product with zero vector") {
-    rc::check("dot(v, {0, 0}) == 0", [](const std::vector<int>& v) {
-        RC_PRE(v.size() == 2ULL);
+    rc::check("dot(v, {0, 0}) == 0", []() {
+        std::vector<int> v = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
+        RC_PRE(v.size() == 2);
         std::vector<int> zero = {0, 0};
         RC_ASSERT(dot(v, zero) == 0);
     });
@@ -249,22 +374,29 @@ TEST_CASE("Property-based test: dot product with zero vector") {
 
 TEST_CASE("Property-based test: cross product anti-commutativity") {
     rc::check("cross(v1, v2) == -cross(v2, v1)",
-              [](const std::vector<int>& v1, const std::vector<int>& v2) {
-                  RC_PRE(v1.size() == 2ULL && v2.size() == 2ULL);
+              []() {
+                  std::vector<int> v1 = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
+                  std::vector<int> v2 = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
+                  RC_PRE(v1.size() == 2 && v2.size() == 2);
                   RC_ASSERT(cross(v1, v2) == -cross(v2, v1));
               });
 }
 
 TEST_CASE("Property-based test: cross product with parallel vectors") {
-    rc::check("cross(v, v) == 0", [](const std::vector<int>& v) {
-        RC_PRE(v.size() == 2ULL);
+    rc::check("cross(v, v) == 0", []() {
+        std::vector<int> v = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
+        RC_PRE(v.size() == 2);
         RC_ASSERT(cross(v, v) == 0);
     });
 }
 
 TEST_CASE("Property-based test: quad is always non-negative") {
-    rc::check("quad(v) >= 0", [](const std::vector<int>& v) {
-        RC_PRE(v.size() == 2ULL);
+    rc::check("quad(v) >= 0", []() {
+        std::vector<int> v = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
+        RC_PRE(v.size() == 2);
+        // Note: For int types, quad can overflow for large values
+        // Use smaller range to avoid overflow
+        RC_PRE(std::abs(v[0]) < 1000 && std::abs(v[1]) < 1000);
         RC_ASSERT(quad(v) >= 0);
     });
 }
@@ -278,26 +410,33 @@ TEST_CASE("Property-based test: quad of zero vector is zero") {
 
 TEST_CASE("Property-based test: spread is always between 0 and 1") {
     rc::check("0 <= spread(v1, v2) <= 1",
-              [](const std::vector<double>& v1, const std::vector<double>& v2) {
-                  RC_PRE(v1.size() == 2ULL && v2.size() == 2ULL);
-                  RC_PRE(v1[0] != 0 || v1[1] != 0);
-                  RC_PRE(v2[0] != 0 || v2[1] != 0);
+              []() {
+                  std::vector<double> v1 = *rc::gen::container<std::vector<double>>(rc::gen::arbitrary<double>());
+                  std::vector<double> v2 = *rc::gen::container<std::vector<double>>(rc::gen::arbitrary<double>());
+                  RC_PRE(v1.size() == 2 && v2.size() == 2);
+                  RC_PRE(v1[0] != 0.0 || v1[1] != 0.0);
+                  RC_PRE(v2[0] != 0.0 || v2[1] != 0.0);
+                  // Use smaller values to avoid numerical issues
+                  RC_PRE(std::abs(v1[0]) < 1000.0 && std::abs(v1[1]) < 1000.0);
+                  RC_PRE(std::abs(v2[0]) < 1000.0 && std::abs(v2[1]) < 1000.0);
                   double spr = spread(v1, v2);
                   RC_ASSERT(spr >= 0.0 && spr <= 1.0);
               });
 }
 
 TEST_CASE("Property-based test: spread of parallel vectors is zero") {
-    rc::check("spread(v, v) == 0", [](const std::vector<int>& v) {
-        RC_PRE(v.size() == 2ULL);
+    rc::check("spread(v, v) == 0", []() {
+        std::vector<int> v = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
+        RC_PRE(v.size() == 2);
         RC_PRE(v[0] != 0 || v[1] != 0);
         RC_ASSERT(spread(v, v) == 0);
     });
 }
 
 TEST_CASE("Property-based test: spread of orthogonal vectors is one") {
-    rc::check("spread(v1, v2) == 1 when orthogonal", [](const std::vector<int>& v1) {
-        RC_PRE(v1.size() == 2ULL);
+    rc::check("spread(v1, v2) == 1 when orthogonal", []() {
+        std::vector<int> v1 = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
+        RC_PRE(v1.size() == 2);
         RC_PRE(v1[0] != 0 || v1[1] != 0);
         std::vector<int> v2 = {-v1[1], v1[0]};
         RC_ASSERT(spread(v1, v2) == 1);
