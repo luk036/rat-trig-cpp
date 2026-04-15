@@ -15,36 +15,133 @@ A Modern C++ implementation of the Rational Trigonometry library.
 
 ## ✨ Features
 
-- [Modern CMake practices](https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/)
-- Suited for single header libraries and projects of any scale
-- Clean separation of library and executable code
-- Integrated test suite
-- Continuous integration via [GitHub Actions](https://help.github.com/en/actions/)
-- Code coverage via [codecov](https://codecov.io)
-- Code formatting enforced by [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [cmake-format](https://github.com/cheshirekow/cmake_format) via [Format.cmake](https://github.com/TheLartians/Format.cmake)
-- Reproducible dependency management via [CPM.cmake](https://github.com/TheLartians/CPM.cmake)
-- Installable target with automatic versioning information and header generation via [PackageProject.cmake](https://github.com/TheLartians/PackageProject.cmake)
-- Automatic [documentation](https://thelartians.github.io/ModernCppStarter) and deployment with [Doxygen](https://www.doxygen.nl) and [GitHub Pages](https://pages.github.com)
-- Support for [sanitizer tools, and more](#additional-tools)
+Rational trigonometry, developed by Norman Wildberger, replaces traditional concepts of angles and distances with **quadrance** (squared distance) and **spread** (squared sine of angle), providing a more algebraic approach to geometry.
 
-## Usage
+This library provides:
 
-### Adjust the template to your needs
+- **Modern C++17 implementation** with constexpr support
+- **Template-based functions** working with any numeric type (int, double, float, fractions)
+- **std::array and std::vector support** for 2D vector operations
+- **Comprehensive test suite** with property-based testing
+- **Performance benchmarks** for optimization
+- **Multiple build systems**: CMake (primary) and xmake
+- **Cross-platform CI/CD** via GitHub Actions (macOS, Windows, Ubuntu)
+- **Code coverage** via codecov
+- **Automated formatting** via clang-format and cmake-format
+- **pkg-config support** for easy integration
 
-- Use this repo [as a template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
-- Replace all occurrences of "RatTrig" in the relevant CMakeLists.txt with the name of your project
-  - Capitalization matters here: `RatTrig` means the name of the project, while `rattrig` is used in file names.
-  - Remember to rename the `include/rattrig` directory to use your project's lowercase name and update all relevant `#include`s accordingly.
-- Replace the source files with your own
-- For header-only libraries: see the comments in [CMakeLists.txt](CMakeLists.txt)
-- Add [your project's codecov token](https://docs.codecov.io/docs/quick-start) to your project's github secrets under `CODECOV_TOKEN`
-- Happy coding!
+## 📖 Mathematical Concepts
 
-Eventually, you can remove any unused files, such as the standalone directory or irrelevant github workflows for your project.
-Feel free to replace the License with one suited for your project.
+### Key Functions
 
-To cleanly separate the library and subproject code, the outer `CMakeList.txt` only defines the library itself while the tests and other subprojects are self-contained in their own directories.
-During development it is usually convenient to [build all subprojects at once](#build-everything-at-once).
+- **Archimedes' Formula**: Calculates quadrea (16 × area²) of a triangle
+- **Quadrance**: Squared length of a vector (replaces distance)
+- **Spread**: Squared sine of angle between vectors (replaces angle)
+- **Triple Quad Formula**: Calculates third quadrance given two quadrances and spread
+- **Spread Law**: Calculates spread from three quadrances
+- **Quadaverage**: Average quadrance between two vectors
+- **QuadAngle**: Dilated directed angle structure
+
+### Why Rational Trigonometry?
+
+Traditional trigonometry uses transcendental functions and irrational numbers. Rational trigonometry works entirely with rational numbers and algebraic operations, making it:
+- More precise for computational applications
+- Better suited for computer graphics and robotics
+- Easier to understand algebraically
+- Free from transcendental function approximations
+
+## 💻 Usage Examples
+
+### Basic Usage
+
+```cpp
+#include <rattrig/trigonom.hpp>
+#include <array>
+#include <iostream>
+
+using namespace rattrig;
+
+int main() {
+    // Calculate quadrance (squared length) of vector (3, 4)
+    std::array<double, 2> vec = {3.0, 4.0};
+    double q = quad(vec);
+    std::cout << "Quadrance: " << q << std::endl;  // Output: 25
+    
+    // Calculate spread (squared sine) between orthogonal vectors
+    std::array<double, 2> x_axis = {1.0, 0.0};
+    std::array<double, 2> y_axis = {0.0, 1.0};
+    double s = spread(x_axis, y_axis);
+    std::cout << "Spread (orthogonal): " << s << std::endl;  // Output: 1
+    
+    // Use Archimedes' formula to calculate quadrea
+    double q1 = 25.0, q2 = 16.0, q3 = 9.0;
+    double quadrea = archimedes(q1, q2, q3);
+    std::cout << "Quadrea: " << quadrea << std::endl;
+    
+    return 0;
+}
+```
+
+### Working with Different Types
+
+```cpp
+#include <rattrig/trigonom.hpp>
+#include <fractions/fractions.hpp>
+#include <array>
+
+using namespace rattrig;
+
+// Works with integers
+std::array<int, 2> v_int = {3, 4};
+int q_int = quad(v_int);  // 25
+
+// Works with doubles
+std::array<double, 2> v_double = {3.5, 4.5};
+double q_double = quad(v_double);  // 32.5
+
+// Works with fractions for exact rational arithmetic
+std::array<fractions::Fraction<int>, 2> v_frac = {
+    fractions::Fraction<int>(3, 5),
+    fractions::Fraction<int>(4, 5)
+};
+auto q_frac = quad(v_frac);  // Exactly 1
+```
+
+### Advanced Features
+
+```cpp
+// Create a dilated directed angle (QuadAngle)
+std::array<double, 2> v1 = {1.0, 2.0};
+std::array<double, 2> v2 = {3.0, 4.0};
+
+auto qa = make_quadangle(v1, v2);
+std::cout << "Spread: " << qa.spread << std::endl;
+std::cout << "Quad: " << qa.quad << std::endl;
+std::cout << "Sign: " << (qa.sign ? "positive" : "negative") << std::endl;
+
+// Check if four quadrances form a cyclic quad
+double Q1 = 2.0, Q2 = 4.0, Q3 = 6.0;
+double Q4 = archimedes(Q1, Q2, Q3);
+bool is_cyclic = is_cyclic_quad(Q1, Q2, Q3, Q4);
+```
+
+### Compile-time Evaluation
+
+All functions are constexpr, enabling compile-time computation:
+
+```cpp
+constexpr std::array<int, 2> v1 = {3, 4};
+constexpr std::array<int, 2> v2 = {5, 6};
+
+constexpr int q = quad(v1);           // Computed at compile time
+constexpr int d = dot(v1, v2);        // Computed at compile time
+constexpr int c = cross(v1, v2);      // Computed at compile time
+
+static_assert(q == 25, "Quadrance should be 25");
+static_assert(d == 27, "Dot product should be 27");
+```
+
+## 🔧 Building and Running
 
 ### Build and run the standalone target
 

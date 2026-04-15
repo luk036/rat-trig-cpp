@@ -358,7 +358,7 @@ TEST_CASE("Property-based test: dot product commutativity") {
               []() {
                   std::vector<int> v1 = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
                   std::vector<int> v2 = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
-                  RC_PRE(v1.size() == 2 && v2.size() == 2);
+                  RC_PRE(v1.size() == static_cast<size_t>(2) && v2.size() == static_cast<size_t>(2));
                   RC_ASSERT(dot(v1, v2) == dot(v2, v1));
               });
 }
@@ -366,7 +366,7 @@ TEST_CASE("Property-based test: dot product commutativity") {
 TEST_CASE("Property-based test: dot product with zero vector") {
     rc::check("dot(v, {0, 0}) == 0", []() {
         std::vector<int> v = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
-        RC_PRE(v.size() == 2);
+        RC_PRE(v.size() == static_cast<size_t>(2));
         std::vector<int> zero = {0, 0};
         RC_ASSERT(dot(v, zero) == 0);
     });
@@ -377,7 +377,7 @@ TEST_CASE("Property-based test: cross product anti-commutativity") {
               []() {
                   std::vector<int> v1 = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
                   std::vector<int> v2 = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
-                  RC_PRE(v1.size() == 2 && v2.size() == 2);
+                  RC_PRE(v1.size() == static_cast<size_t>(2) && v2.size() == static_cast<size_t>(2));
                   RC_ASSERT(cross(v1, v2) == -cross(v2, v1));
               });
 }
@@ -385,7 +385,7 @@ TEST_CASE("Property-based test: cross product anti-commutativity") {
 TEST_CASE("Property-based test: cross product with parallel vectors") {
     rc::check("cross(v, v) == 0", []() {
         std::vector<int> v = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
-        RC_PRE(v.size() == 2);
+        RC_PRE(v.size() == static_cast<size_t>(2));
         RC_ASSERT(cross(v, v) == 0);
     });
 }
@@ -393,7 +393,7 @@ TEST_CASE("Property-based test: cross product with parallel vectors") {
 TEST_CASE("Property-based test: quad is always non-negative") {
     rc::check("quad(v) >= 0", []() {
         std::vector<int> v = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
-        RC_PRE(v.size() == 2);
+        RC_PRE(v.size() == static_cast<size_t>(2));
         // Note: For int types, quad can overflow for large values
         // Use smaller range to avoid overflow
         RC_PRE(std::abs(v[0]) < 1000 && std::abs(v[1]) < 1000);
@@ -413,7 +413,7 @@ TEST_CASE("Property-based test: spread is always between 0 and 1") {
               []() {
                   std::vector<double> v1 = *rc::gen::container<std::vector<double>>(rc::gen::arbitrary<double>());
                   std::vector<double> v2 = *rc::gen::container<std::vector<double>>(rc::gen::arbitrary<double>());
-                  RC_PRE(v1.size() == 2 && v2.size() == 2);
+                  RC_PRE(v1.size() == static_cast<size_t>(2) && v2.size() == static_cast<size_t>(2));
                   RC_PRE(v1[0] != 0.0 || v1[1] != 0.0);
                   RC_PRE(v2[0] != 0.0 || v2[1] != 0.0);
                   // Use smaller values to avoid numerical issues
@@ -427,7 +427,7 @@ TEST_CASE("Property-based test: spread is always between 0 and 1") {
 TEST_CASE("Property-based test: spread of parallel vectors is zero") {
     rc::check("spread(v, v) == 0", []() {
         std::vector<int> v = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
-        RC_PRE(v.size() == 2);
+        RC_PRE(v.size() == static_cast<size_t>(2));
         RC_PRE(v[0] != 0 || v[1] != 0);
         RC_ASSERT(spread(v, v) == 0);
     });
@@ -436,7 +436,7 @@ TEST_CASE("Property-based test: spread of parallel vectors is zero") {
 TEST_CASE("Property-based test: spread of orthogonal vectors is one") {
     rc::check("spread(v1, v2) == 1 when orthogonal", []() {
         std::vector<int> v1 = *rc::gen::container<std::vector<int>>(rc::gen::arbitrary<int>());
-        RC_PRE(v1.size() == 2);
+        RC_PRE(v1.size() == static_cast<size_t>(2));
         RC_PRE(v1[0] != 0 || v1[1] != 0);
         std::vector<int> v2 = {-v1[1], v1[0]};
         RC_ASSERT(spread(v1, v2) == 1);

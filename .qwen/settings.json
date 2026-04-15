@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed *)",
+      "Bash(./build/test/rattrigtests)"
+    ]
+  },
+  "$version": 3
+}

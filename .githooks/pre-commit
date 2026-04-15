@@ -1,0 +1,95 @@
+#!/bin/sh
+#
+# Pre-commit hook to run clang-format and cmake-format before committing
+# This prevents commits of improperly formatted code
+#
+# Installation:
+#   cp .githooks/pre-commit .git/hooks/pre-commit
+#   chmod +x .git/hooks/pre-commit
+#
+
+echo "Running pre-commit format checks..."
+
+# Check if clang-format is installed
+if ! command -v clang-format &> /dev/null; then
+    echo "Error: clang-format is not installed"
+    echo "Install with: pip install clang-format"
+    exit 1
+fi
+
+# Check if cmake-format is installed
+if ! command -v cmake-format &> /dev/null; then
+    echo "Error: cmake-format is not installed"
+    echo "Install with: pip install cmake_format"
+    exit 1
+fi
+
+# Get list of staged C++ files
+CPP_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(cpp|hpp|h|cxx|hxx)$' || true)
+
+# Get list of staged CMake files
+CMAKE_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '(CMakeLists\.txt|\.cmake)$' || true)
+
+if [ -z "$CPP_FILES" ] && [ -z "$CMAKE_FILES" ]; then
+    echo "No C++ or CMake files to check."
+    exit 0
+fi
+
+# Check C++ files
+if [ -n "$CPP_FILES" ]; then
+    echo "Checking C++ format..."
+    FAIL=0
+    for file in $CPP_FILES; do
+        if [ -f "$file" ]; then
+            # Check if file needs formatting
+            clang-format --dry-run --Werror "$file" 2>/dev/null
+            if [ $? -ne 0 ]; then
+                echo "  ✗ $file needs formatting"
+                FAIL=1
+            else
+                echo "  ✓ $file"
+            fi
+        fi
+    done
+    
+    if [ $FAIL -ne 0 ]; then
+        echo ""
+        echo "Some files need formatting. Run:"
+        echo "  clang-format -i <files>"
+        echo ""
+        echo "Or use the CMake format target:"
+        echo "  cmake --build build --target fix-format"
+        exit 1
+    fi
+fi
+
+# Check CMake files
+if [ -n "$CMAKE_FILES" ]; then
+    echo "Checking CMake format..."
+    FAIL=0
+    for file in $CMAKE_FILES; do
+        if [ -f "$file" ]; then
+            # Check if file needs formatting
+            cmake-format --check "$file" 2>/dev/null
+            if [ $? -ne 0 ]; then
+                echo "  ✗ $file needs formatting"
+                FAIL=1
+            else
+                echo "  ✓ $file"
+            fi
+        fi
+    done
+    
+    if [ $FAIL -ne 0 ]; then
+        echo ""
+        echo "Some files need formatting. Run:"
+        echo "  cmake-format -i <files>"
+        echo ""
+        echo "Or use the CMake format target:"
+        echo "  cmake --build build --target fix-format"
+        exit 1
+    fi
+fi
+
+echo "All format checks passed! ✓"
+exit 0
