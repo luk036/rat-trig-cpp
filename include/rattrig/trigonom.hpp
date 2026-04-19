@@ -42,103 +42,105 @@
 /// angles and trigonometric functions.
 namespace rattrig {
 
-/// @brief Exception class for rational trigonometry errors
-class TrigonomError : public std::runtime_error {
-public:
-    explicit TrigonomError(const std::string& message) : std::runtime_error(message) {}
-};
+    /// @brief Exception class for rational trigonometry errors
+    class TrigonomError : public std::runtime_error {
+      public:
+        explicit TrigonomError(const std::string& message) : std::runtime_error(message) {}
+    };
 
-/// @brief Validates that a vector has the expected size
-/// @tparam T Type of vector elements
-/// @param vec Vector to validate
-/// @param expected_size Expected vector size
-/// @throws TrigonomError if vector size doesn't match
-template <typename T>
-constexpr void validate_vector_size(const std::vector<T>& vec, size_t expected_size) {
-    if (vec.size() != expected_size) {
-        throw TrigonomError("Vector must have exactly " + std::to_string(expected_size) +
-                            " elements, got " + std::to_string(vec.size()));
+    /// @brief Validates that a vector has the expected size
+    /// @tparam T Type of vector elements
+    /// @param vec Vector to validate
+    /// @param expected_size Expected vector size
+    /// @throws TrigonomError if vector size doesn't match
+    template <typename T>
+    constexpr void validate_vector_size(const std::vector<T>& vec, size_t expected_size) {
+        if (vec.size() != expected_size) {
+            throw TrigonomError("Vector must have exactly " + std::to_string(expected_size)
+                                + " elements, got " + std::to_string(vec.size()));
+        }
     }
-}
 
-/// @brief Validates that a value is non-zero (for division operations)
-/// @tparam T Type of value
-/// @param value Value to validate
-/// @param param_name Name of parameter for error message
-/// @throws TrigonomError if value is zero
-template <typename T>
-constexpr void validate_non_zero(const T& value, const std::string& param_name) {
-    if (value == T(0)) {
-        throw TrigonomError("Parameter '" + param_name + "' cannot be zero");
+    /// @brief Validates that a value is non-zero (for division operations)
+    /// @tparam T Type of value
+    /// @param value Value to validate
+    /// @param param_name Name of parameter for error message
+    /// @throws TrigonomError if value is zero
+    template <typename T>
+    constexpr void validate_non_zero(const T& value, const std::string& param_name) {
+        if (value == T(0)) {
+            throw TrigonomError("Parameter '" + param_name + "' cannot be zero");
+        }
     }
-}
 
-/// @brief Validates that a value is non-negative
-/// @tparam T Type of value
-/// @param value Value to validate
-/// @param param_name Name of parameter for error message
-/// @throws TrigonomError if value is negative
-template <typename T>
-constexpr void validate_non_negative(const T& value, const std::string& param_name) {
-    if (value < T(0)) {
-        throw TrigonomError("Parameter '" + param_name + "' cannot be negative");
+    /// @brief Validates that a value is non-negative
+    /// @tparam T Type of value
+    /// @param value Value to validate
+    /// @param param_name Name of parameter for error message
+    /// @throws TrigonomError if value is negative
+    template <typename T>
+    constexpr void validate_non_negative(const T& value, const std::string& param_name) {
+        if (value < T(0)) {
+            throw TrigonomError("Parameter '" + param_name + "' cannot be negative");
+        }
     }
-}
 
-/// @brief Validates that a multiplication won't overflow
-/// @tparam T Type of values
-/// @param a First value
-/// @param b Second value
-/// @param param_name Name of parameter for error message
-/// @throws TrigonomError if multiplication would overflow
-template <typename T>
-constexpr void validate_no_overflow_multiply(const T& a, const T& b, const std::string& param_name) {
-    if constexpr (std::is_integral_v<T>) {
-        if (a != 0 && b != 0) {
-            if ((a > 0 && b > 0 && a > std::numeric_limits<T>::max() / b) ||
-                (a < 0 && b < 0 && a < std::numeric_limits<T>::max() / b) ||
-                (a > 0 && b < 0 && b < std::numeric_limits<T>::min() / a) ||
-                (a < 0 && b > 0 && a < std::numeric_limits<T>::min() / b)) {
-                throw TrigonomError("Multiplication overflow for parameter '" + param_name + "'");
+    /// @brief Validates that a multiplication won't overflow
+    /// @tparam T Type of values
+    /// @param a First value
+    /// @param b Second value
+    /// @param param_name Name of parameter for error message
+    /// @throws TrigonomError if multiplication would overflow
+    template <typename T>
+    constexpr void validate_no_overflow_multiply(const T& a, const T& b,
+                                                 const std::string& param_name) {
+        if constexpr (std::is_integral_v<T>) {
+            if (a != 0 && b != 0) {
+                if ((a > 0 && b > 0 && a > std::numeric_limits<T>::max() / b)
+                    || (a < 0 && b < 0 && a < std::numeric_limits<T>::max() / b)
+                    || (a > 0 && b < 0 && b < std::numeric_limits<T>::min() / a)
+                    || (a < 0 && b > 0 && a < std::numeric_limits<T>::min() / b)) {
+                    throw TrigonomError("Multiplication overflow for parameter '" + param_name
+                                        + "'");
+                }
             }
         }
     }
-}
 
-/// @brief Validates that an addition won't overflow
-/// @tparam T Type of values
-/// @param a First value
-/// @param b Second value
-/// @param param_name Name of parameter for error message
-/// @throws TrigonomError if addition would overflow
-template <typename T>
-constexpr void validate_no_overflow_add(const T& a, const T& b, const std::string& param_name) {
-    if constexpr (std::is_integral_v<T>) {
-        if (a > 0 && b > 0 && a > std::numeric_limits<T>::max() - b) {
-            throw TrigonomError("Addition overflow for parameter '" + param_name + "'");
-        }
-        if (a < 0 && b < 0 && a < std::numeric_limits<T>::min() - b) {
-            throw TrigonomError("Addition underflow for parameter '" + param_name + "'");
-        }
-    }
-}
-
-/// @brief Validates that a square operation won't overflow
-/// @tparam T Type of value
-/// @param a Value to square
-/// @param param_name Name of parameter for error message
-/// @throws TrigonomError if squaring would overflow
-template <typename T>
-constexpr void validate_no_overflow_square(const T& a, const std::string& param_name) {
-    if constexpr (std::is_integral_v<T>) {
-        if (a != 0) {
-            T abs_a = (a < 0) ? -a : a;
-            if (abs_a > std::numeric_limits<T>::max() / abs_a) {
-                throw TrigonomError("Square overflow for parameter '" + param_name + "'");
+    /// @brief Validates that an addition won't overflow
+    /// @tparam T Type of values
+    /// @param a First value
+    /// @param b Second value
+    /// @param param_name Name of parameter for error message
+    /// @throws TrigonomError if addition would overflow
+    template <typename T>
+    constexpr void validate_no_overflow_add(const T& a, const T& b, const std::string& param_name) {
+        if constexpr (std::is_integral_v<T>) {
+            if (a > 0 && b > 0 && a > std::numeric_limits<T>::max() - b) {
+                throw TrigonomError("Addition overflow for parameter '" + param_name + "'");
+            }
+            if (a < 0 && b < 0 && a < std::numeric_limits<T>::min() - b) {
+                throw TrigonomError("Addition underflow for parameter '" + param_name + "'");
             }
         }
     }
-}
+
+    /// @brief Validates that a square operation won't overflow
+    /// @tparam T Type of value
+    /// @param a Value to square
+    /// @param param_name Name of parameter for error message
+    /// @throws TrigonomError if squaring would overflow
+    template <typename T>
+    constexpr void validate_no_overflow_square(const T& a, const std::string& param_name) {
+        if constexpr (std::is_integral_v<T>) {
+            if (a != 0) {
+                T abs_a = (a < 0) ? -a : a;
+                if (abs_a > std::numeric_limits<T>::max() / abs_a) {
+                    throw TrigonomError("Square overflow for parameter '" + param_name + "'");
+                }
+            }
+        }
+    }
 
     /**
      * @brief Calculates the quadrea of a triangle using Archimedes' formula.
@@ -158,14 +160,14 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * using Archimedes' formula, given the lengths of the 3 sides.
      *
      */
-    template <typename T> constexpr T archimedes(const T &q_1, const T &q_2, const T &q_3) {
+    template <typename T> constexpr T archimedes(const T& q_1, const T& q_2, const T& q_3) {
         validate_no_overflow_multiply(q_1, q_2, "q_1 in archimedes");
         validate_no_overflow_multiply(q_1, T(4), "4 * q_1 in archimedes");
         validate_no_overflow_multiply(q_2, T(4), "4 * q_2 in archimedes");
-        
+
         T temp = q_1 + q_2 - q_3;
         validate_no_overflow_square(temp, "temp in archimedes");
-        
+
         return 4 * q_1 * q_2 - temp * temp;
     }
 
@@ -179,7 +181,7 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Cross product of the two vectors
      * @throws TrigonomError if vectors don't have size 2 or overflow occurs
      */
-    template <typename T> constexpr T cross(const std::vector<T> &v_1, const std::vector<T> &v_2) {
+    template <typename T> constexpr T cross(const std::vector<T>& v_1, const std::vector<T>& v_2) {
         validate_vector_size(v_1, 2);
         validate_vector_size(v_2, 2);
         validate_no_overflow_multiply(v_1[0], v_2[1], "v_1[0] * v_2[1] in cross");
@@ -195,7 +197,7 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Dot product of the two vectors
      * @throws TrigonomError if vectors don't have size 2 or overflow occurs
      */
-    template <typename T> constexpr T dot(const std::vector<T> &v_1, const std::vector<T> &v_2) {
+    template <typename T> constexpr T dot(const std::vector<T>& v_1, const std::vector<T>& v_2) {
         validate_vector_size(v_1, 2);
         validate_vector_size(v_2, 2);
         validate_no_overflow_multiply(v_1[0], v_2[0], "v_1[0] * v_2[0] in dot");
@@ -210,7 +212,7 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Quadrance of the vector
      * @throws TrigonomError if vector doesn't have size 2 or overflow occurs
      */
-    template <typename T> constexpr T quad(const std::vector<T> &vec) {
+    template <typename T> constexpr T quad(const std::vector<T>& vec) {
         validate_vector_size(vec, 2);
         validate_no_overflow_square(vec[0], "vec[0] in quad");
         validate_no_overflow_square(vec[1], "vec[1] in quad");
@@ -229,17 +231,17 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Spread between the two vectors
      * @throws TrigonomError if vectors don't have size 2, have zero length, or overflow occurs
      */
-    template <typename T> constexpr T spread(const std::vector<T> &v_1, const std::vector<T> &v_2) {
+    template <typename T> constexpr T spread(const std::vector<T>& v_1, const std::vector<T>& v_2) {
         validate_vector_size(v_1, 2);
         validate_vector_size(v_2, 2);
-        
+
         T q1 = quad(v_1);
         T q2 = quad(v_2);
-        
+
         validate_non_zero(q1, "quad(v_1)");
         validate_non_zero(q2, "quad(v_2)");
         validate_no_overflow_multiply(q1, q2, "q1 * q2 in spread");
-        
+
         T cross_val = cross(v_1, v_2);
         validate_no_overflow_square(cross_val, "cross_val in spread");
         return (cross_val * cross_val) / (q1 * q2);
@@ -257,14 +259,14 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @throws TrigonomError if overflow occurs
      */
     template <typename T>
-    constexpr T triple_quad_formula(const T &q_1, const T &q_2, const T &spr_val) {
+    constexpr T triple_quad_formula(const T& q_1, const T& q_2, const T& spr_val) {
         validate_no_overflow_add(q_1, q_2, "q_1 + q_2 in triple_quad_formula");
         validate_no_overflow_multiply(q_1, q_2, "q_1 * q_2 in triple_quad_formula");
         validate_no_overflow_multiply(q_1 * q_2, T(4), "4 * q_1 * q_2 in triple_quad_formula");
-        
+
         T sum = q_1 + q_2;
         validate_no_overflow_square(sum, "sum in triple_quad_formula");
-        
+
         return sum * sum - 4 * q_1 * q_2 * (1 - spr_val);
     }
 
@@ -279,15 +281,15 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Spread
      * @throws TrigonomError if q_1 or q_2 is zero or overflow occurs
      */
-    template <typename T> constexpr T spread_law(const T &q_1, const T &q_2, const T &q_3) {
+    template <typename T> constexpr T spread_law(const T& q_1, const T& q_2, const T& q_3) {
         validate_non_zero(q_1, "q_1");
         validate_non_zero(q_2, "q_2");
         validate_no_overflow_multiply(q_1, q_2, "q_1 * q_2 in spread_law");
         validate_no_overflow_multiply(q_1 * q_2, T(4), "4 * q_1 * q_2 in spread_law");
-        
+
         T numerator = q_1 + q_2 - q_3;
         validate_no_overflow_square(numerator, "numerator in spread_law");
-        
+
         return 1 - (numerator * numerator) / (4 * q_1 * q_2);
     }
 
@@ -301,7 +303,7 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Dot product of the two vectors
      * @throws TrigonomError if vectors don't have size 3 or overflow occurs
      */
-    template <typename T> constexpr T dot3d(const std::vector<T> &v_1, const std::vector<T> &v_2) {
+    template <typename T> constexpr T dot3d(const std::vector<T>& v_1, const std::vector<T>& v_2) {
         validate_vector_size(v_1, 3);
         validate_vector_size(v_2, 3);
         validate_no_overflow_multiply(v_1[0], v_2[0], "v_1[0] * v_2[0] in dot3d");
@@ -318,10 +320,11 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Cross product of the two vectors
      * @throws TrigonomError if vectors don't have size 3 or overflow occurs
      */
-    template <typename T> constexpr std::vector<T> cross3d(const std::vector<T> &v_1, const std::vector<T> &v_2) {
+    template <typename T>
+    constexpr std::vector<T> cross3d(const std::vector<T>& v_1, const std::vector<T>& v_2) {
         validate_vector_size(v_1, 3);
         validate_vector_size(v_2, 3);
-        
+
         // Validate all multiplications
         validate_no_overflow_multiply(v_1[1], v_2[2], "v_1[1] * v_2[2] in cross3d");
         validate_no_overflow_multiply(v_1[2], v_2[1], "v_1[2] * v_2[1] in cross3d");
@@ -329,12 +332,9 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
         validate_no_overflow_multiply(v_1[0], v_2[2], "v_1[0] * v_2[2] in cross3d");
         validate_no_overflow_multiply(v_1[0], v_2[1], "v_1[0] * v_2[1] in cross3d");
         validate_no_overflow_multiply(v_1[1], v_2[0], "v_1[1] * v_2[0] in cross3d");
-        
-        return {
-            v_1[1] * v_2[2] - v_1[2] * v_2[1],
-            v_1[2] * v_2[0] - v_1[0] * v_2[2],
-            v_1[0] * v_2[1] - v_1[1] * v_2[0]
-        };
+
+        return {v_1[1] * v_2[2] - v_1[2] * v_2[1], v_1[2] * v_2[0] - v_1[0] * v_2[2],
+                v_1[0] * v_2[1] - v_1[1] * v_2[0]};
     }
 
     /**
@@ -344,13 +344,14 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Quadrance of the vector
      * @throws TrigonomError if vector doesn't have size 3 or overflow occurs
      */
-    template <typename T> constexpr T quad3d(const std::vector<T> &vec) {
+    template <typename T> constexpr T quad3d(const std::vector<T>& vec) {
         validate_vector_size(vec, 3);
         validate_no_overflow_square(vec[0], "vec[0] in quad3d");
         validate_no_overflow_square(vec[1], "vec[1] in quad3d");
         validate_no_overflow_square(vec[2], "vec[2] in quad3d");
         validate_no_overflow_add(vec[0] * vec[0], vec[1] * vec[1], "quad3d sum (first two)");
-        validate_no_overflow_add(vec[0] * vec[0] + vec[1] * vec[1], vec[2] * vec[2], "quad3d sum (total)");
+        validate_no_overflow_add(vec[0] * vec[0] + vec[1] * vec[1], vec[2] * vec[2],
+                                 "quad3d sum (total)");
         return vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2];
     }
 
@@ -365,17 +366,18 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Spread between the two vectors
      * @throws TrigonomError if vectors don't have size 3, have zero length, or overflow occurs
      */
-    template <typename T> constexpr T spread3d(const std::vector<T> &v_1, const std::vector<T> &v_2) {
+    template <typename T>
+    constexpr T spread3d(const std::vector<T>& v_1, const std::vector<T>& v_2) {
         validate_vector_size(v_1, 3);
         validate_vector_size(v_2, 3);
-        
+
         T q1 = quad3d(v_1);
         T q2 = quad3d(v_2);
-        
+
         validate_non_zero(q1, "quad3d(v_1)");
         validate_non_zero(q2, "quad3d(v_2)");
         validate_no_overflow_multiply(q1, q2, "q1 * q2 in spread3d");
-        
+
         T dot_val = dot3d(v_1, v_2);
         validate_no_overflow_square(dot_val, "dot_val in spread3d");
         return 1 - (dot_val * dot_val) / (q1 * q2);
@@ -393,8 +395,9 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Triple product (scalar)
      * @throws TrigonomError if vectors don't have size 3 or overflow occurs
      */
-    template <typename T> 
-    constexpr T triple_product(const std::vector<T> &v_1, const std::vector<T> &v_2, const std::vector<T> &v_3) {
+    template <typename T> constexpr T triple_product(const std::vector<T>& v_1,
+                                                     const std::vector<T>& v_2,
+                                                     const std::vector<T>& v_3) {
         std::vector<T> cross_val = cross3d(v_1, v_2);
         return dot3d(cross_val, v_3);
     }
@@ -404,8 +407,7 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
     /**
      * @brief Structure to represent a triangle with points and properties
      */
-    template <typename T>
-    struct Triangle {
+    template <typename T> struct Triangle {
         std::vector<T> a;  // First vertex
         std::vector<T> b;  // Second vertex
         std::vector<T> c;  // Third vertex
@@ -427,8 +429,9 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Triangle structure with all computed properties
      * @throws TrigonomError if vectors don't have size 2, points are collinear, or overflow occurs
      */
-    template <typename T>
-    constexpr Triangle<T> create_triangle(const std::vector<T>& a, const std::vector<T>& b, const std::vector<T>& c) {
+    template <typename T> constexpr Triangle<T> create_triangle(const std::vector<T>& a,
+                                                                const std::vector<T>& b,
+                                                                const std::vector<T>& c) {
         validate_vector_size(a, 2);
         validate_vector_size(b, 2);
         validate_vector_size(c, 2);
@@ -483,16 +486,16 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
         // Calculate third quadrance using triple quad formula
         // Note: triple_quad_formula returns the squared third quadrance
         T q_3_squared = triple_quad_formula(q_1, q_2, spread);
-        
+
         // Take square root to get the actual third quadrance
         if constexpr (std::is_floating_point_v<T>) {
             if (q_3_squared < 0) {
                 throw TrigonomError("Invalid triangle: third quadrance squared is negative");
             }
         }
-        
+
         T q_3 = std::sqrt(q_3_squared);
-        
+
         // Verify triangle is valid (positive quadrea)
         T q = archimedes(q_1, q_2, q_3);
         if (q < T(0)) {
@@ -506,7 +509,7 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
         // Create triangle with vertex at origin
         Triangle<T> tri;
         tri.a = {T(0), T(0)};
-        tri.b = {q_1, T(0)};  // Side AB along x-axis
+        tri.b = {q_1, T(0)};                                          // Side AB along x-axis
         tri.c = {q_1 * (1 - spread), std::sqrt(q_1 * q_2 * spread)};  // Point C
 
         tri.q_ab = q_1;
@@ -632,10 +635,7 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
         T cos_val = std::sqrt(cos_sq);
         T sin_val = std::sqrt(spread);
 
-        return {
-            cos_val * vec[0] - sin_val * vec[1],
-            sin_val * vec[0] + cos_val * vec[1]
-        };
+        return {cos_val * vec[0] - sin_val * vec[1], sin_val * vec[0] + cos_val * vec[1]};
     }
 
     /**
@@ -646,15 +646,12 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
      * @return Translated vector
      * @throws TrigonomError if vectors don't have size 2
      */
-    template <typename T>
-    constexpr std::vector<T> translate_2d(const std::vector<T>& vec, const std::vector<T>& translation) {
+    template <typename T> constexpr std::vector<T> translate_2d(const std::vector<T>& vec,
+                                                                const std::vector<T>& translation) {
         validate_vector_size(vec, 2);
         validate_vector_size(translation, 2);
 
-        return {
-            vec[0] + translation[0],
-            vec[1] + translation[1]
-        };
+        return {vec[0] + translation[0], vec[1] + translation[1]};
     }
 
     /**
@@ -671,10 +668,7 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
         validate_no_overflow_multiply(vec[0], scale, "vec[0] * scale in scale_2d");
         validate_no_overflow_multiply(vec[1], scale, "vec[1] * scale in scale_2d");
 
-        return {
-            vec[0] * scale,
-            vec[1] * scale
-        };
+        return {vec[0] * scale, vec[1] * scale};
     }
 
     /**
@@ -695,11 +689,7 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
         T cos_val = std::sqrt(cos_sq);
         T sin_val = std::sqrt(spread);
 
-        return {
-            vec[0],
-            cos_val * vec[1] - sin_val * vec[2],
-            sin_val * vec[1] + cos_val * vec[2]
-        };
+        return {vec[0], cos_val * vec[1] - sin_val * vec[2], sin_val * vec[1] + cos_val * vec[2]};
     }
 
     /**
@@ -720,11 +710,7 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
         T cos_val = std::sqrt(cos_sq);
         T sin_val = std::sqrt(spread);
 
-        return {
-            cos_val * vec[0] + sin_val * vec[2],
-            vec[1],
-            -sin_val * vec[0] + cos_val * vec[2]
-        };
+        return {cos_val * vec[0] + sin_val * vec[2], vec[1], -sin_val * vec[0] + cos_val * vec[2]};
     }
 
     /**
@@ -745,11 +731,7 @@ constexpr void validate_no_overflow_square(const T& a, const std::string& param_
         T cos_val = std::sqrt(cos_sq);
         T sin_val = std::sqrt(spread);
 
-        return {
-            cos_val * vec[0] - sin_val * vec[1],
-            sin_val * vec[0] + cos_val * vec[1],
-            vec[2]
-        };
+        return {cos_val * vec[0] - sin_val * vec[1], sin_val * vec[0] + cos_val * vec[1], vec[2]};
     }
 
 }  // namespace rattrig

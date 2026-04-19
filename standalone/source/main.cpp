@@ -1,5 +1,6 @@
-#include <cxxopts.hpp>
 #include <fmt/format.h>
+
+#include <cxxopts.hpp>
 #include <iostream>
 #include <rattrig/trigonom.hpp>
 #include <string>
@@ -7,9 +8,7 @@
 
 using namespace rattrig;
 
-void print_usage(const cxxopts::Options& options) {
-    std::cout << options.help() << std::endl;
-}
+void print_usage(const cxxopts::Options& options) { std::cout << options.help() << std::endl; }
 
 void print_vector(const std::string& name, const std::vector<double>& vec) {
     std::cout << fmt::format("  {}: [{:.2f}, {:.2f}]", name, vec[0], vec[1]) << std::endl;
@@ -119,8 +118,7 @@ int main(int argc, char** argv) {
         std::cout << fmt::format("  Given Q1 = {:.2f}, Q2 = {:.2f}, Spread = {:.3f}", q1, q2, spr)
                   << std::endl;
         std::cout << fmt::format("  Calculated Q3 = {:.2f}", q3) << std::endl;
-        std::cout << fmt::format("  Verification: Spread Law = {:.4f}",
-                                 spread_law(q1, q2, q3))
+        std::cout << fmt::format("  Verification: Spread Law = {:.4f}", spread_law(q1, q2, q3))
                   << std::endl;
         std::cout << std::endl;
 
