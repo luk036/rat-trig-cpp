@@ -65,18 +65,18 @@ int main() {
     // Calculate quadrance (squared length) of vector (3, 4)
     std::array<double, 2> vec = {3.0, 4.0};
     double q = quad(vec);
-    std::cout << "Quadrance: " << q << std::endl;  // Output: 25
+    std::cout << "Quadrance: " << q << '\n';  // Output: 25
     
     // Calculate spread (squared sine) between orthogonal vectors
     std::array<double, 2> x_axis = {1.0, 0.0};
     std::array<double, 2> y_axis = {0.0, 1.0};
     double s = spread(x_axis, y_axis);
-    std::cout << "Spread (orthogonal): " << s << std::endl;  // Output: 1
+    std::cout << "Spread (orthogonal): " << s << '\n';  // Output: 1
     
     // Use Archimedes' formula to calculate quadrea
     double q1 = 25.0, q2 = 16.0, q3 = 9.0;
     double quadrea = archimedes(q1, q2, q3);
-    std::cout << "Quadrea: " << quadrea << std::endl;
+    std::cout << "Quadrea: " << quadrea << '\n';
     
     return 0;
 }
@@ -115,9 +115,9 @@ std::array<double, 2> v1 = {1.0, 2.0};
 std::array<double, 2> v2 = {3.0, 4.0};
 
 auto qa = make_quadangle(v1, v2);
-std::cout << "Spread: " << qa.spread << std::endl;
-std::cout << "Quad: " << qa.quad << std::endl;
-std::cout << "Sign: " << (qa.sign ? "positive" : "negative") << std::endl;
+std::cout << "Spread: " << qa.spread << '\n';
+std::cout << "Quad: " << qa.quad << '\n';
+std::cout << "Sign: " << (qa.sign ? "positive" : "negative") << '\n';
 
 // Check if four quadrances form a cyclic quad
 double Q1 = 2.0, Q2 = 4.0, Q3 = 6.0;

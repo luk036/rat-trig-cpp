@@ -180,7 +180,7 @@ throw TrigonomError("Parameter '" + param_name + "' cannot be zero");
 try {
     auto result = func();
 } catch (const TrigonomError& e) {
-    std::cerr << "Error: " << e.what() << std::endl;
+    std::cerr << "Error: " << e.what() << '\n';
 }
 ```
 
