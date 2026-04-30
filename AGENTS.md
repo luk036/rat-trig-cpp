@@ -353,7 +353,7 @@ cmake --build build
 
 ## Dependencies (via CPM.cmake)
 
-- `fmt` (10.2.1) - Formatting library
+- `fmt` (12.1.0) - Formatting library
 - `doctest` (2.4.11) - Testing framework
 - `PackageProject.cmake` (1.8.0) - Installable target support
 - `Format.cmake` (1.7.3) - Code formatting

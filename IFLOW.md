@@ -64,7 +64,7 @@ cmake --build build/test --target fix-format  # 应用更改
 ## 依赖管理
 
 项目使用 CPM.cmake 进行依赖管理:
-- fmt: 版本 10.2.1，用于格式化
+- fmt: 版本 12.1.0，用于格式化
 - Fractions: 版本 1.0.1，用于分数运算（来自 luk036/fractions-cpp）
 
 ## 开发约定
