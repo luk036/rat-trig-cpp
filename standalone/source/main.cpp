@@ -85,12 +85,9 @@ int main(int argc, char** argv) {
         std::cout << fmt::format("  Side CA quadrance: {:.2f}", q_ca) << '\n';
         std::cout << fmt::format("  Quadrea (Archimedes): {:.2f}", archimedes(q_ab, q_bc, q_ca))
                   << '\n';
-        std::cout << fmt::format("  Spread at A: {:.4f}", spread_law(q_ca, q_ab, q_bc))
-                  << '\n';
-        std::cout << fmt::format("  Spread at B: {:.4f}", spread_law(q_ab, q_bc, q_ca))
-                  << '\n';
-        std::cout << fmt::format("  Spread at C: {:.4f}", spread_law(q_bc, q_ca, q_ab))
-                  << '\n';
+        std::cout << fmt::format("  Spread at A: {:.4f}", spread_law(q_ca, q_ab, q_bc)) << '\n';
+        std::cout << fmt::format("  Spread at B: {:.4f}", spread_law(q_ab, q_bc, q_ca)) << '\n';
+        std::cout << fmt::format("  Spread at C: {:.4f}", spread_law(q_bc, q_ca, q_ab)) << '\n';
         std::cout << '\n';
 
         // Example 3: Special cases
@@ -101,11 +98,9 @@ int main(int argc, char** argv) {
         std::vector<double> orthogonal2 = {0.0, 1.0};
 
         std::cout << "  Parallel vectors: spread = " << spread(parallel1, parallel2) << '\n';
-        std::cout << "  Orthogonal vectors: spread = " << spread(orthogonal1, orthogonal2)
-                  << '\n';
+        std::cout << "  Orthogonal vectors: spread = " << spread(orthogonal1, orthogonal2) << '\n';
         std::cout << "  Parallel vectors: cross = " << cross(parallel1, parallel2) << '\n';
-        std::cout << "  Orthogonal vectors: cross = " << cross(orthogonal1, orthogonal2)
-                  << '\n';
+        std::cout << "  Orthogonal vectors: cross = " << cross(orthogonal1, orthogonal2) << '\n';
         std::cout << '\n';
 
         // Example 4: Triple Quad Formula

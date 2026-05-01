@@ -345,7 +345,7 @@ TEST_CASE("Test scale_2d") {
 
 TEST_CASE("Test rotate_2d") {
     std::vector<double> v = {1.0, 0.0};
-    auto result = rotate_2d(v, 1.0);           // 90 degree rotation
+    auto result = rotate_2d(v, 1.0);             // 90 degree rotation
     CHECK_LT(std::abs(result[0]), 1e-10);        // Should be near 0
     CHECK_LT(std::abs(result[1] - 1.0), 1e-10);  // Should be near 1
 }
