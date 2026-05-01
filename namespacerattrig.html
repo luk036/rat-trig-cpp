@@ -51,7 +51,7 @@
         <h1>
           rattrig <span class="m-thin">namespace</span>
         </h1>
-        <p><span></span></p>
+        <p>Rational Trigonometry library namespace.</p>
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -59,31 +59,24 @@
               Reference
               <ul>
                 <li><a href="#nested-classes">Classes</a></li>
-                <li><a href="#enum-members">Enums</a></li>
                 <li><a href="#func-members">Functions</a></li>
               </ul>
             </li>
           </ul>
         </nav>
+<p>This namespace contains functions implementing rational trigonometry, an alternative approach to classical trigonometry based on rational numbers and geometric concepts like quadrance and spread instead of angles and trigonometric functions.</p>
         <section id="nested-classes">
           <h2><a href="#nested-classes">Classes</a></h2>
           <dl class="m-doc">
             <dt>
-              class <a href="classrattrig_1_1RatTrig.html" class="m-doc">RatTrig</a>
+              <div class="m-doc-template">template&lt;<a href="structrattrig_1_1Triangle.html#aab46433bd30b0ebb143c7e71e488be9e" class="m-doc">typename</a> <a href="structrattrig_1_1Triangle.html#aab46433bd30b0ebb143c7e71e488be9e" class="m-doc">T</a>&gt;</div>
+              struct <a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a>
             </dt>
-            <dd>A class for saying hello in multiple languages.</dd>
-          </dl>
-        </section>
-        <section id="enum-members">
-          <h2><a href="#enum-members">Enums</a></h2>
-          <dl class="m-doc">
+            <dd>Structure to represent a triangle with points and properties.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">enum class <a href="#ad1320297e66ca19327b26612464090ae" class="m-doc">LanguageCode</a> { </span><span class="m-doc-wrap"><a href="#ad1320297e66ca19327b26612464090aeaaa85f1840e282d8a8304dbc2c0d7c9b2" class="m-doc">EN</a>,
-              <a href="#ad1320297e66ca19327b26612464090aea3a52f3c22ed6fcde5bf696a6c02c9e73" class="m-doc">DE</a>,
-              <a href="#ad1320297e66ca19327b26612464090aea04c19fa1e772ab66f0aad2efe61f25cd" class="m-doc">ES</a>,
-              <a href="#ad1320297e66ca19327b26612464090aea11aedd0e432747c2bcd97b82808d24a0" class="m-doc">FR</a> }</span>
+              class <a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a>
             </dt>
-            <dd></dd>
+            <dd>Exception class for rational trigonometry errors.</dd>
           </dl>
         </section>
         <section id="func-members">
@@ -91,25 +84,458 @@
           <dl class="m-doc">
             <dt>
               <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#a963dc5d8e84e7d30888d60ead27b3dd0" class="m-doc">validate_vector_size</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              size_t expected_size) <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Validates that a vector has the expected size.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#ad2bfa1f83b21c94427175a8c3abececd" class="m-doc">validate_non_zero</a>(</span><span class="m-doc-wrap">const T&amp; value,
+              const std::string&amp; param_name) <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Validates that a value is non-zero (for division operations)</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#a2079db7c0a2ffa037be01a53e09e667e" class="m-doc">validate_non_negative</a>(</span><span class="m-doc-wrap">const T&amp; value,
+              const std::string&amp; param_name) <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Validates that a value is non-negative.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#a03d3dc7b2a9b1e2244bdba599359a1ab" class="m-doc">validate_no_overflow_multiply</a>(</span><span class="m-doc-wrap">const T&amp; a,
+              const T&amp; b,
+              const std::string&amp; param_name) <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Validates that a multiplication won&#x27;t overflow.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#a27fc0b0ac2a6dc904db9b10fb20f6279" class="m-doc">validate_no_overflow_add</a>(</span><span class="m-doc-wrap">const T&amp; a,
+              const T&amp; b,
+              const std::string&amp; param_name) <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Validates that an addition won&#x27;t overflow.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#af5ddc724cc7731d69bfcf51b9da0d2b8" class="m-doc">validate_no_overflow_square</a>(</span><span class="m-doc-wrap">const T&amp; a,
+              const std::string&amp; param_name) <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Validates that a square operation won&#x27;t overflow.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
               <span class="m-doc-wrap-bumper">auto <a href="#a77a607f688c381ab95320fd3490a4df5" class="m-doc">archimedes</a>(</span><span class="m-doc-wrap">const T&amp; q_1,
               const T&amp; q_2,
               const T&amp; q_3) -&gt; T <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
             <dd>Calculates the quadrea of a triangle using Archimedes&#x27; formula.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a851230cc207078902ca5087f536d14bd" class="m-doc">cross</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) -&gt; T <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Calculates the cross product of two 2D vectors.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a9b855d18e26b40ae79b28ca09fe6aea9" class="m-doc">dot</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) -&gt; T <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Calculates the dot product of two 2D vectors.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a34221a260e09d76e3eeabe3455f5ae93" class="m-doc">quad</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec) -&gt; T <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Calculates the quadrance (squared length) of a 2D vector.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#aadd90607f8923cafd5cb81fffa3b5202" class="m-doc">spread</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) -&gt; T <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Calculates the spread between two 2D vectors.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3c037cb2cfc4794fedf60cecdd7fe2b5" class="m-doc">triple_quad_formula</a>(</span><span class="m-doc-wrap">const T&amp; q_1,
+              const T&amp; q_2,
+              const T&amp; spr_val) -&gt; T <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Calculates the third quadrance using the triple quad formula.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a81a720c02408fe5dee340b0ed601043c" class="m-doc">spread_law</a>(</span><span class="m-doc-wrap">const T&amp; q_1,
+              const T&amp; q_2,
+              const T&amp; q_3) -&gt; T <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Calculates the spread using the spread law.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a48b7b78b0120b8da1ca2d7ec6b37b75a" class="m-doc">dot3d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) -&gt; T <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Calculates the dot product of two 3D vectors.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a67439154cef2769ea02b38d102b11d58" class="m-doc">cross3d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) -&gt; std::vector&lt;T&gt; <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Calculates the cross product of two 3D vectors.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3235d50fd79e01e43c7821d8dcb19c5e" class="m-doc">quad3d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec) -&gt; T <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Calculates the quadrance (squared length) of a 3D vector.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5095c8e52621c618eef4ed0a1700360a" class="m-doc">spread3d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) -&gt; T <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Calculates the spread between two 3D vectors.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a2c20d9b75e407233c5430e1123645886" class="m-doc">triple_product</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2,
+              const std::vector&lt;T&gt;&amp; v_3) -&gt; T <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Calculates the triple product of three 3D vectors.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#aca50f4521eb88fe6817983730b7b6057" class="m-doc">create_triangle</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; a,
+              const std::vector&lt;T&gt;&amp; b,
+              const std::vector&lt;T&gt;&amp; c) -&gt; <a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a>&lt;T&gt; <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Creates a triangle from three 2D points.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6fd8376b6bedd6627269d060df9d1a98" class="m-doc">solve_triangle_sas</a>(</span><span class="m-doc-wrap">const T&amp; q_1,
+              const T&amp; q_2,
+              const T&amp; spread) -&gt; <a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a>&lt;T&gt; <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Solves a triangle given two sides and the included spread (SAS case)</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#ad66e44aeea4e29d3953a070518fcfe72" class="m-doc">solve_triangle_sss</a>(</span><span class="m-doc-wrap">const T&amp; q_1,
+              const T&amp; q_2,
+              const T&amp; q_3) -&gt; <a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a>&lt;T&gt; <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Solves a triangle given three quadrances (SSS case)</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a540f36b4cdcd2a5d08581074f401b2a2" class="m-doc">solve_triangle_ssa</a>(</span><span class="m-doc-wrap">const T&amp; spread_1,
+              const T&amp; spread_2,
+              const T&amp; q_1) -&gt; <a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a>&lt;T&gt; <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Solves a triangle given two spreads and a quadrance (SSA case)</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3631381f89edaf4998ec398be4604df7" class="m-doc">rotate_2d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const T&amp; spread) -&gt; std::vector&lt;T&gt; <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Rotates a 2D vector by a given spread (sine squared of angle)</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3c4ba055e5e13b38e3e4dabdb5a989de" class="m-doc">translate_2d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const std::vector&lt;T&gt;&amp; translation) -&gt; std::vector&lt;T&gt; <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Translates a 2D vector by a translation vector.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a049549236d4682b42f265f5fa9067027" class="m-doc">scale_2d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const T&amp; scale) -&gt; std::vector&lt;T&gt; <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Scales a 2D vector by a scalar factor.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5270280e15a09002e3560ad391734bea" class="m-doc">rotate_3d_x</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const T&amp; spread) -&gt; std::vector&lt;T&gt; <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Rotates a 3D vector around the x-axis by a given spread.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a2e9491453bbbe3759d5c18c932b2efdc" class="m-doc">rotate_3d_y</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const T&amp; spread) -&gt; std::vector&lt;T&gt; <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Rotates a 3D vector around the y-axis by a given spread.</dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3a2653e5b541df214afa9bcb6a38484e" class="m-doc">rotate_3d_z</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const T&amp; spread) -&gt; std::vector&lt;T&gt; <span class="m-label m-flat m-primary">constexpr</span></span>
+            </dt>
+            <dd>Rotates a 3D vector around the z-axis by a given spread.</dd>
           </dl>
         </section>
         <section>
-          <h2>Enum documentation</h2>
-          <section class="m-doc-details" id="ad1320297e66ca19327b26612464090ae"><div>
-            <h3>
-              enum class rattrig::<wbr /><a href="#ad1320297e66ca19327b26612464090ae" class="m-doc-self">LanguageCode</a>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="greeter_8h.html">&lt;rattrig/greeter.h&gt;</a></div>
-            </h3>
-<p>Language codes to be used with the <a href="classrattrig_1_1RatTrig.html" class="m-doc">RatTrig</a> class</p>
-          </div></section>
-        </section>
-        <section>
           <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a963dc5d8e84e7d30888d60ead27b3dd0"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">void rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a963dc5d8e84e7d30888d60ead27b3dd0" class="m-doc-self">validate_vector_size</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              size_t expected_size) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Validates that a vector has the expected size.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">T</td>
+                  <td>Type of vector elements</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>vec</td>
+                  <td>Vector to validate</td>
+                </tr>
+                <tr>
+                  <td>expected_size</td>
+                  <td>Expected vector size</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vector size doesn&#x27;t match</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="ad2bfa1f83b21c94427175a8c3abececd"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">void rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad2bfa1f83b21c94427175a8c3abececd" class="m-doc-self">validate_non_zero</a>(</span><span class="m-doc-wrap">const T&amp; value,
+              const std::string&amp; param_name) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Validates that a value is non-zero (for division operations)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">T</td>
+                  <td>Type of value</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>value</td>
+                  <td>Value to validate</td>
+                </tr>
+                <tr>
+                  <td>param_name</td>
+                  <td>Name of parameter for error message</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if value is zero</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a2079db7c0a2ffa037be01a53e09e667e"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">void rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2079db7c0a2ffa037be01a53e09e667e" class="m-doc-self">validate_non_negative</a>(</span><span class="m-doc-wrap">const T&amp; value,
+              const std::string&amp; param_name) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Validates that a value is non-negative.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">T</td>
+                  <td>Type of value</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>value</td>
+                  <td>Value to validate</td>
+                </tr>
+                <tr>
+                  <td>param_name</td>
+                  <td>Name of parameter for error message</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if value is negative</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a03d3dc7b2a9b1e2244bdba599359a1ab"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">void rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a03d3dc7b2a9b1e2244bdba599359a1ab" class="m-doc-self">validate_no_overflow_multiply</a>(</span><span class="m-doc-wrap">const T&amp; a,
+              const T&amp; b,
+              const std::string&amp; param_name) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Validates that a multiplication won&#x27;t overflow.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">T</td>
+                  <td>Type of values</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>a</td>
+                  <td>First value</td>
+                </tr>
+                <tr>
+                  <td>b</td>
+                  <td>Second value</td>
+                </tr>
+                <tr>
+                  <td>param_name</td>
+                  <td>Name of parameter for error message</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if multiplication would overflow</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a27fc0b0ac2a6dc904db9b10fb20f6279"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">void rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a27fc0b0ac2a6dc904db9b10fb20f6279" class="m-doc-self">validate_no_overflow_add</a>(</span><span class="m-doc-wrap">const T&amp; a,
+              const T&amp; b,
+              const std::string&amp; param_name) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Validates that an addition won&#x27;t overflow.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">T</td>
+                  <td>Type of values</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>a</td>
+                  <td>First value</td>
+                </tr>
+                <tr>
+                  <td>b</td>
+                  <td>Second value</td>
+                </tr>
+                <tr>
+                  <td>param_name</td>
+                  <td>Name of parameter for error message</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if addition would overflow</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="af5ddc724cc7731d69bfcf51b9da0d2b8"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">void rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af5ddc724cc7731d69bfcf51b9da0d2b8" class="m-doc-self">validate_no_overflow_square</a>(</span><span class="m-doc-wrap">const T&amp; a,
+              const std::string&amp; param_name) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Validates that a square operation won&#x27;t overflow.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Template parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">T</td>
+                  <td>Type of value</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>a</td>
+                  <td>Value to square</td>
+                </tr>
+                <tr>
+                  <td>param_name</td>
+                  <td>Name of parameter for error message</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if squaring would overflow</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
           <section class="m-doc-details" id="a77a607f688c381ab95320fd3490a4df5"><div>
             <h3>
               <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
@@ -147,6 +573,897 @@
               </tfoot>
             </table>
 <p>Takes the lengths of the triangle&#x27;s three sides as parameters q1, q2, q3. Returns the quadrea calculation result.</p><p>Can also be used to check if a quadraple of lengths Q1, Q2, Q3, Q4 is on a circle.</p>
+          </div></section>
+          <section class="m-doc-details" id="a851230cc207078902ca5087f536d14bd"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">T rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a851230cc207078902ca5087f536d14bd" class="m-doc-self">cross</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Calculates the cross product of two 2D vectors.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">v_1</td>
+                  <td>First vector as std::vector&lt;T&gt; of size 2</td>
+                </tr>
+                <tr>
+                  <td>v_2</td>
+                  <td>Second vector as std::vector&lt;T&gt; of size 2</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Cross product of the two vectors</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vectors don&#x27;t have size 2 or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a9b855d18e26b40ae79b28ca09fe6aea9"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">T rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9b855d18e26b40ae79b28ca09fe6aea9" class="m-doc-self">dot</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Calculates the dot product of two 2D vectors.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">v_1</td>
+                  <td>First vector as std::vector&lt;T&gt; of size 2</td>
+                </tr>
+                <tr>
+                  <td>v_2</td>
+                  <td>Second vector as std::vector&lt;T&gt; of size 2</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Dot product of the two vectors</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vectors don&#x27;t have size 2 or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a34221a260e09d76e3eeabe3455f5ae93"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">T rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a34221a260e09d76e3eeabe3455f5ae93" class="m-doc-self">quad</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Calculates the quadrance (squared length) of a 2D vector.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vec</td>
+                  <td>Vector as std::vector&lt;T&gt; of size 2</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Quadrance of the vector</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vector doesn&#x27;t have size 2 or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="aadd90607f8923cafd5cb81fffa3b5202"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">T rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aadd90607f8923cafd5cb81fffa3b5202" class="m-doc-self">spread</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Calculates the spread between two 2D vectors.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">v_1</td>
+                  <td>First vector as std::vector&lt;T&gt; of size 2</td>
+                </tr>
+                <tr>
+                  <td>v_2</td>
+                  <td>Second vector as std::vector&lt;T&gt; of size 2</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Spread between the two vectors</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vectors don&#x27;t have size 2, have zero length, or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+<p>The spread is defined as the square of the cross product divided by the product of the quadrances of the two vectors.</p>
+          </div></section>
+          <section class="m-doc-details" id="a3c037cb2cfc4794fedf60cecdd7fe2b5"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">T rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3c037cb2cfc4794fedf60cecdd7fe2b5" class="m-doc-self">triple_quad_formula</a>(</span><span class="m-doc-wrap">const T&amp; q_1,
+              const T&amp; q_2,
+              const T&amp; spr_val) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Calculates the third quadrance using the triple quad formula.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">q_1</td>
+                  <td>First quadrance</td>
+                </tr>
+                <tr>
+                  <td>q_2</td>
+                  <td>Second quadrance</td>
+                </tr>
+                <tr>
+                  <td>spr_val</td>
+                  <td>Spread between the two vectors</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Third quadrance (squared value)</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Given two quadrances and the spread between them, calculates the third quadrance.</p>
+          </div></section>
+          <section class="m-doc-details" id="a81a720c02408fe5dee340b0ed601043c"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">T rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a81a720c02408fe5dee340b0ed601043c" class="m-doc-self">spread_law</a>(</span><span class="m-doc-wrap">const T&amp; q_1,
+              const T&amp; q_2,
+              const T&amp; q_3) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Calculates the spread using the spread law.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">q_1</td>
+                  <td>First quadrance</td>
+                </tr>
+                <tr>
+                  <td>q_2</td>
+                  <td>Second quadrance</td>
+                </tr>
+                <tr>
+                  <td>q_3</td>
+                  <td>Third quadrance</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Spread</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if q_1 or q_2 is zero or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Given three quadrances of a triangle, calculates the spread.</p>
+          </div></section>
+          <section class="m-doc-details" id="a48b7b78b0120b8da1ca2d7ec6b37b75a"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">T rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a48b7b78b0120b8da1ca2d7ec6b37b75a" class="m-doc-self">dot3d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Calculates the dot product of two 3D vectors.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">v_1</td>
+                  <td>First vector as std::vector&lt;T&gt; of size 3</td>
+                </tr>
+                <tr>
+                  <td>v_2</td>
+                  <td>Second vector as std::vector&lt;T&gt; of size 3</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Dot product of the two vectors</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vectors don&#x27;t have size 3 or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a67439154cef2769ea02b38d102b11d58"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::vector&lt;T&gt; rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a67439154cef2769ea02b38d102b11d58" class="m-doc-self">cross3d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Calculates the cross product of two 3D vectors.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">v_1</td>
+                  <td>First vector as std::vector&lt;T&gt; of size 3</td>
+                </tr>
+                <tr>
+                  <td>v_2</td>
+                  <td>Second vector as std::vector&lt;T&gt; of size 3</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Cross product of the two vectors</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vectors don&#x27;t have size 3 or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a3235d50fd79e01e43c7821d8dcb19c5e"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">T rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3235d50fd79e01e43c7821d8dcb19c5e" class="m-doc-self">quad3d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Calculates the quadrance (squared length) of a 3D vector.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vec</td>
+                  <td>Vector as std::vector&lt;T&gt; of size 3</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Quadrance of the vector</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vector doesn&#x27;t have size 3 or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a5095c8e52621c618eef4ed0a1700360a"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">T rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5095c8e52621c618eef4ed0a1700360a" class="m-doc-self">spread3d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Calculates the spread between two 3D vectors.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">v_1</td>
+                  <td>First vector as std::vector&lt;T&gt; of size 3</td>
+                </tr>
+                <tr>
+                  <td>v_2</td>
+                  <td>Second vector as std::vector&lt;T&gt; of size 3</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Spread between the two vectors</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vectors don&#x27;t have size 3, have zero length, or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+<p>The spread is defined as 1 - (dot)^2 / (q1 * q2), which represents the squared sine of the angle between vectors.</p>
+          </div></section>
+          <section class="m-doc-details" id="a2c20d9b75e407233c5430e1123645886"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">T rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2c20d9b75e407233c5430e1123645886" class="m-doc-self">triple_product</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; v_1,
+              const std::vector&lt;T&gt;&amp; v_2,
+              const std::vector&lt;T&gt;&amp; v_3) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Calculates the triple product of three 3D vectors.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">v_1</td>
+                  <td>First vector as std::vector&lt;T&gt; of size 3</td>
+                </tr>
+                <tr>
+                  <td>v_2</td>
+                  <td>Second vector as std::vector&lt;T&gt; of size 3</td>
+                </tr>
+                <tr>
+                  <td>v_3</td>
+                  <td>Third vector as std::vector&lt;T&gt; of size 3</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Triple product (scalar)</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vectors don&#x27;t have size 3 or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+<p>The triple product is the dot product of one vector with the cross product of the other two. It represents the signed volume of the parallelepiped formed by the three vectors.</p>
+          </div></section>
+          <section class="m-doc-details" id="aca50f4521eb88fe6817983730b7b6057"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper"><a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a>&lt;T&gt; rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aca50f4521eb88fe6817983730b7b6057" class="m-doc-self">create_triangle</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; a,
+              const std::vector&lt;T&gt;&amp; b,
+              const std::vector&lt;T&gt;&amp; c) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Creates a triangle from three 2D points.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">a</td>
+                  <td>First point (2D vector)</td>
+                </tr>
+                <tr>
+                  <td>b</td>
+                  <td>Second point (2D vector)</td>
+                </tr>
+                <tr>
+                  <td>c</td>
+                  <td>Third point (2D vector)</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td><a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a> structure with all computed properties</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vectors don&#x27;t have size 2, points are collinear, or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a6fd8376b6bedd6627269d060df9d1a98"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper"><a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a>&lt;T&gt; rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6fd8376b6bedd6627269d060df9d1a98" class="m-doc-self">solve_triangle_sas</a>(</span><span class="m-doc-wrap">const T&amp; q_1,
+              const T&amp; q_2,
+              const T&amp; spread) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Solves a triangle given two sides and the included spread (SAS case)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">q_1</td>
+                  <td>First quadrance</td>
+                </tr>
+                <tr>
+                  <td>q_2</td>
+                  <td>Second quadrance</td>
+                </tr>
+                <tr>
+                  <td>spread</td>
+                  <td>Included spread between the sides</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td><a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a> structure with all computed properties</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if inputs are invalid or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="ad66e44aeea4e29d3953a070518fcfe72"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper"><a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a>&lt;T&gt; rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad66e44aeea4e29d3953a070518fcfe72" class="m-doc-self">solve_triangle_sss</a>(</span><span class="m-doc-wrap">const T&amp; q_1,
+              const T&amp; q_2,
+              const T&amp; q_3) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Solves a triangle given three quadrances (SSS case)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">q_1</td>
+                  <td>First quadrance</td>
+                </tr>
+                <tr>
+                  <td>q_2</td>
+                  <td>Second quadrance</td>
+                </tr>
+                <tr>
+                  <td>q_3</td>
+                  <td>Third quadrance</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td><a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a> structure with all computed properties</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if inputs don&#x27;t form a valid triangle or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a540f36b4cdcd2a5d08581074f401b2a2"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper"><a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a>&lt;T&gt; rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a540f36b4cdcd2a5d08581074f401b2a2" class="m-doc-self">solve_triangle_ssa</a>(</span><span class="m-doc-wrap">const T&amp; spread_1,
+              const T&amp; spread_2,
+              const T&amp; q_1) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Solves a triangle given two spreads and a quadrance (SSA case)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">spread_1</td>
+                  <td>First spread</td>
+                </tr>
+                <tr>
+                  <td>spread_2</td>
+                  <td>Second spread</td>
+                </tr>
+                <tr>
+                  <td>q_1</td>
+                  <td>Quadrance between the spreads</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td><a href="structrattrig_1_1Triangle.html" class="m-doc">Triangle</a> structure with all computed properties</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if inputs don&#x27;t form a valid triangle or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a3631381f89edaf4998ec398be4604df7"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::vector&lt;T&gt; rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3631381f89edaf4998ec398be4604df7" class="m-doc-self">rotate_2d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const T&amp; spread) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Rotates a 2D vector by a given spread (sine squared of angle)</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vec</td>
+                  <td>Vector to rotate (2D)</td>
+                </tr>
+                <tr>
+                  <td>spread</td>
+                  <td>Spread representing rotation (sine squared of angle)</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Rotated vector</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vector doesn&#x27;t have size 2 or spread is invalid</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a3c4ba055e5e13b38e3e4dabdb5a989de"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::vector&lt;T&gt; rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3c4ba055e5e13b38e3e4dabdb5a989de" class="m-doc-self">translate_2d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const std::vector&lt;T&gt;&amp; translation) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Translates a 2D vector by a translation vector.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vec</td>
+                  <td>Vector to translate (2D)</td>
+                </tr>
+                <tr>
+                  <td>translation</td>
+                  <td>Translation vector (2D)</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Translated vector</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vectors don&#x27;t have size 2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a049549236d4682b42f265f5fa9067027"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::vector&lt;T&gt; rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a049549236d4682b42f265f5fa9067027" class="m-doc-self">scale_2d</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const T&amp; scale) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Scales a 2D vector by a scalar factor.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vec</td>
+                  <td>Vector to scale (2D)</td>
+                </tr>
+                <tr>
+                  <td>scale</td>
+                  <td>Scaling factor</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Scaled vector</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vector doesn&#x27;t have size 2 or overflow occurs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a5270280e15a09002e3560ad391734bea"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::vector&lt;T&gt; rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5270280e15a09002e3560ad391734bea" class="m-doc-self">rotate_3d_x</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const T&amp; spread) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Rotates a 3D vector around the x-axis by a given spread.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vec</td>
+                  <td>Vector to rotate (3D)</td>
+                </tr>
+                <tr>
+                  <td>spread</td>
+                  <td>Spread representing rotation (sine squared of angle)</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Rotated vector</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vector doesn&#x27;t have size 3 or spread is invalid</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a2e9491453bbbe3759d5c18c932b2efdc"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::vector&lt;T&gt; rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2e9491453bbbe3759d5c18c932b2efdc" class="m-doc-self">rotate_3d_y</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const T&amp; spread) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Rotates a 3D vector around the y-axis by a given spread.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vec</td>
+                  <td>Vector to rotate (3D)</td>
+                </tr>
+                <tr>
+                  <td>spread</td>
+                  <td>Spread representing rotation (sine squared of angle)</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Rotated vector</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vector doesn&#x27;t have size 3 or spread is invalid</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a3a2653e5b541df214afa9bcb6a38484e"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::vector&lt;T&gt; rattrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3a2653e5b541df214afa9bcb6a38484e" class="m-doc-self">rotate_3d_z</a>(</span><span class="m-doc-wrap">const std::vector&lt;T&gt;&amp; vec,
+              const T&amp; spread) <span class="m-label m-primary">constexpr</span></span></span>
+            </h3>
+            <p>Rotates a 3D vector around the z-axis by a given spread.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">vec</td>
+                  <td>Vector to rotate (3D)</td>
+                </tr>
+                <tr>
+                  <td>spread</td>
+                  <td>Spread representing rotation (sine squared of angle)</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>Rotated vector</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="classrattrig_1_1TrigonomError.html" class="m-doc">TrigonomError</a></td>
+                  <td>if vector doesn&#x27;t have size 3 or spread is invalid</td>
+                </tr>
+              </tbody>
+            </table>
           </div></section>
         </section>
       </div>
@@ -193,7 +1510,7 @@
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>RatTrig. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>RatTrig. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.8 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>

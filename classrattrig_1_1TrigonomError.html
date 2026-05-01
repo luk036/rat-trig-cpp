@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>rattrig::RatTrig class | RatTrig</title>
+  <title>rattrig::TrigonomError class | RatTrig</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,10 +49,10 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <span class="m-breadcrumb"><a href="namespacerattrig.html">rattrig</a>::<wbr/></span>RatTrig <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="greeter_8h.html">&lt;rattrig/greeter.h&gt;</a></div>
+          <span class="m-breadcrumb"><a href="namespacerattrig.html">rattrig</a>::<wbr/></span>TrigonomError <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="trigonom_8hpp.html">&lt;rattrig/trigonom.hpp&gt;</a></div>
         </h1>
-        <p>A class for saying hello in multiple languages.</p>
+        <p>Exception class for rational trigonometry errors.</p>
         <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -60,7 +60,6 @@
               Reference
               <ul>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
               </ul>
             </li>
           </ul>
@@ -68,63 +67,11 @@
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper"><a href="#aaddd80686bb3ba51e3db6fb20009b94d" class="m-doc">RatTrig</a>(</span><span class="m-doc-wrap">std::string name)</span>
+            <dt id="a9d11c61bb118347e4989789c93cd7716">
+              <span class="m-doc-wrap-bumper"><a href="#a9d11c61bb118347e4989789c93cd7716" class="m-doc-self">TrigonomError</a>(</span><span class="m-doc-wrap">const std::string&amp; message) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd>Creates a new rattrig.</dd>
+            <dd><span></span></dd>
           </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ab7f0e167301d019b56d17ba8a304f67f" class="m-doc">greet</a>(</span><span class="m-doc-wrap"><a href="namespacerattrig.html#ad1320297e66ca19327b26612464090ae" class="m-doc">LanguageCode</a> lang = <a href="namespacerattrig.html#ad1320297e66ca19327b26612464090aeaaa85f1840e282d8a8304dbc2c0d7c9b2" class="m-doc">LanguageCode::<wbr />EN</a>) const -&gt; std::string</span>
-            </dt>
-            <dd>Creates a localized string containing the greeting.</dd>
-          </dl>
-        </section>
-        <section>
-          <h2>Function documentation</h2>
-          <section class="m-doc-details" id="aaddd80686bb3ba51e3db6fb20009b94d"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"> rattrig::<wbr />RatTrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aaddd80686bb3ba51e3db6fb20009b94d" class="m-doc-self">RatTrig</a>(</span><span class="m-doc-wrap">std::string name)</span></span>
-            </h3>
-            <p>Creates a new rattrig.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">name</td>
-                  <td>the name to greet</td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="ab7f0e167301d019b56d17ba8a304f67f"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string rattrig::<wbr />RatTrig::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab7f0e167301d019b56d17ba8a304f67f" class="m-doc-self">greet</a>(</span><span class="m-doc-wrap"><a href="namespacerattrig.html#ad1320297e66ca19327b26612464090ae" class="m-doc">LanguageCode</a> lang = <a href="namespacerattrig.html#ad1320297e66ca19327b26612464090aeaaa85f1840e282d8a8304dbc2c0d7c9b2" class="m-doc">LanguageCode::<wbr />EN</a>) const</span></span>
-            </h3>
-            <p>Creates a localized string containing the greeting.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">lang</td>
-                  <td>the language to greet in</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td>a string containing the greeting</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
         </section>
       </div>
     </div>
@@ -170,7 +117,7 @@
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>RatTrig. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>RatTrig. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.8 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>
