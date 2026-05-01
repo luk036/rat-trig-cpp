@@ -303,9 +303,9 @@ TEST_CASE("Test create_triangle") {
 
     auto tri = create_triangle(a, b, c);
     CHECK_EQ(tri.q_ab, 16.0);
-    CHECK(tri.quadrea > 0.0);
+    CHECK_GT(tri.quadrea, 0.0);
     CHECK_GE(tri.spread_a, 0.0);
-    CHECK(tri.spread_a <= 1.0);
+    CHECK_LE(tri.spread_a, 1.0);
 }
 
 TEST_CASE("Test solve_triangle_sss") {
@@ -313,7 +313,7 @@ TEST_CASE("Test solve_triangle_sss") {
     CHECK_EQ(tri.q_ab, 5.0);
     CHECK_EQ(tri.q_bc, 25.0);
     CHECK_EQ(tri.q_ca, 20.0);
-    CHECK(tri.quadrea > 0.0);
+    CHECK_GT(tri.quadrea, 0.0);
 }
 
 TEST_CASE("Test solve_triangle_sas") {
@@ -323,7 +323,7 @@ TEST_CASE("Test solve_triangle_sas") {
     auto tri = solve_triangle_sas(9.0, 16.0, 1.0);
     CHECK_EQ(tri.q_ab, 9.0);
     CHECK_EQ(tri.q_bc, 16.0);
-    CHECK(tri.quadrea > 0.0);
+    CHECK_GT(tri.quadrea, 0.0);
     CHECK_EQ(tri.spread_c, 1.0);  // Right angle at C
 }
 
@@ -346,8 +346,8 @@ TEST_CASE("Test scale_2d") {
 TEST_CASE("Test rotate_2d") {
     std::vector<double> v = {1.0, 0.0};
     auto result = rotate_2d(v, 1.0);           // 90 degree rotation
-    CHECK(std::abs(result[0]) < 1e-10);        // Should be near 0
-    CHECK(std::abs(result[1] - 1.0) < 1e-10);  // Should be near 1
+    CHECK_LT(std::abs(result[0]), 1e-10);        // Should be near 0
+    CHECK_LT(std::abs(result[1] - 1.0), 1e-10);  // Should be near 1
 }
 
 #ifdef RAPIDCHECK_H
