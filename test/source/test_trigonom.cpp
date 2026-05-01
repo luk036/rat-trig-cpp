@@ -304,7 +304,7 @@ TEST_CASE("Test create_triangle") {
     auto tri = create_triangle(a, b, c);
     CHECK_EQ(tri.q_ab, 16.0);
     CHECK(tri.quadrea > 0.0);
-    CHECK(tri.spread_a >= 0.0);
+    CHECK_GE(tri.spread_a, 0.0);
     CHECK(tri.spread_a <= 1.0);
 }
 
