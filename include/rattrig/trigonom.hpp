@@ -32,7 +32,9 @@
 
 #include <limits>
 #include <stdexcept>
+#include <string>
 #include <vector>
+#include <cmath>
 
 /// @brief Rational Trigonometry library namespace.
 ///

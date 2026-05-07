@@ -2,10 +2,7 @@
 #include <doctest/doctest.h>  // for ResultBuilder, TestCase, CHECK, TEST_CASE
 
 #include <fractions/fractions.hpp>  // for Fraction
-#include <limits>                   // for numeric_limits
-#include <ostream>                  // for Fraction, don't remove
 #include <rattrig/trigonom.hpp>     // for archimedes
-#include <stdexcept>                // for runtime_error
 
 using namespace rattrig;
 
