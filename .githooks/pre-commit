@@ -51,7 +51,7 @@ if [ -n "$CPP_FILES" ]; then
             fi
         fi
     done
-    
+
     if [ $FAIL -ne 0 ]; then
         echo ""
         echo "Some files need formatting. Run:"
@@ -79,7 +79,7 @@ if [ -n "$CMAKE_FILES" ]; then
             fi
         fi
     done
-    
+
     if [ $FAIL -ne 0 ]; then
         echo ""
         echo "Some files need formatting. Run:"

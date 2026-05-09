@@ -251,10 +251,10 @@ TEST_CASE("Test description") {
     int q_1 = 2;
     int q_2 = 4;
     int q_3 = 6;
-    
+
     // Act
     auto result = archimedes(q_1, q_2, q_3);
-    
+
     // Assert
     CHECK_EQ(result, 32);
 }
@@ -299,7 +299,7 @@ CHECK_EQ(archimedes(q_1, q_2, q_3), fractions::Fraction<int>(23, 144));
 TEST_CASE("Error handling - invalid vector size") {
     std::vector<int> v1 = {1};  // Wrong size!
     std::vector<int> v2 = {1, 2};
-    
+
     CHECK_THROWS_AS(quad(v1), TrigonomError);
     CHECK_THROWS_AS(dot(v1, v2), TrigonomError);
 }

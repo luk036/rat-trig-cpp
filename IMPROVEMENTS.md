@@ -48,7 +48,7 @@ Created comprehensive benchmark suite:
 - More maintainable for contributors
 
 ### 4. pkg-config Support (Item 4)
-**Files**: 
+**Files**:
 - `CMakeLists.txt` (modified)
 - `rattrig.pc.in` (new)
 
@@ -112,7 +112,7 @@ struct QuadAngle {
 ```cpp
 template <typename T>
 constexpr QuadAngle<T> make_quadangle(
-    const std::array<T, 2> &v_1, 
+    const std::array<T, 2> &v_1,
     const std::array<T, 2> &v_2
 );
 ```
@@ -123,7 +123,7 @@ constexpr QuadAngle<T> make_quadangle(
 ```cpp
 template <typename T>
 constexpr bool is_cyclic_quad(
-    const T &q_1, const T &q_2, 
+    const T &q_1, const T &q_2,
     const T &q_3, const T &q_4
 );
 ```
@@ -137,7 +137,7 @@ constexpr bool is_cyclic_quad(
 
 **Before**: Silent division by zero when given zero vectors
 
-**After**: 
+**After**:
 ```cpp
 if (q1 == T(0) || q2 == T(0)) {
     throw std::invalid_argument("Cannot compute spread of zero vector");
