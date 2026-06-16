@@ -153,6 +153,7 @@ namespace rattrig {
      * Can also be used to check if a quadraple of lengths Q1, Q2, Q3, Q4 is on a
      * circle.
      *
+     * @tparam T Numeric type for side lengths (int, double, Fraction, etc.).
      * @param[in] q_1 Represents the length of the first side of the triangle.
      * @param[in] q_2 Represents the length of the second side of the triangle.
      * @param[in] q_3 The parameter `q_3` represents the length of the third side of
@@ -178,6 +179,7 @@ namespace rattrig {
     /**
      * @brief Calculates the cross product of two 2D vectors.
      *
+     * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 2
      * @param v_2 Second vector as std::vector<T> of size 2
      * @return Cross product of the two vectors
@@ -194,6 +196,7 @@ namespace rattrig {
     /**
      * @brief Calculates the dot product of two 2D vectors.
      *
+     * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 2
      * @param v_2 Second vector as std::vector<T> of size 2
      * @return Dot product of the two vectors
@@ -210,6 +213,7 @@ namespace rattrig {
     /**
      * @brief Calculates the quadrance (squared length) of a 2D vector.
      *
+     * @tparam T Numeric type for vector elements.
      * @param vec Vector as std::vector<T> of size 2
      * @return Quadrance of the vector
      * @throws TrigonomError if vector doesn't have size 2 or overflow occurs
@@ -228,6 +232,7 @@ namespace rattrig {
      * The spread is defined as the square of the cross product divided by
      * the product of the quadrances of the two vectors.
      *
+     * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 2
      * @param v_2 Second vector as std::vector<T> of size 2
      * @return Spread between the two vectors
@@ -254,6 +259,7 @@ namespace rattrig {
      *
      * Given two quadrances and the spread between them, calculates the third quadrance.
      *
+     * @tparam T Numeric type for quadrances and spread.
      * @param q_1 First quadrance
      * @param q_2 Second quadrance
      * @param spr_val Spread between the two vectors
@@ -277,6 +283,7 @@ namespace rattrig {
      *
      * Given three quadrances of a triangle, calculates the spread.
      *
+     * @tparam T Numeric type for quadrances.
      * @param q_1 First quadrance
      * @param q_2 Second quadrance
      * @param q_3 Third quadrance
@@ -300,6 +307,7 @@ namespace rattrig {
     /**
      * @brief Calculates the dot product of two 3D vectors.
      *
+     * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 3
      * @param v_2 Second vector as std::vector<T> of size 3
      * @return Dot product of the two vectors
@@ -317,6 +325,7 @@ namespace rattrig {
     /**
      * @brief Calculates the cross product of two 3D vectors.
      *
+     * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 3
      * @param v_2 Second vector as std::vector<T> of size 3
      * @return Cross product of the two vectors
@@ -342,6 +351,7 @@ namespace rattrig {
     /**
      * @brief Calculates the quadrance (squared length) of a 3D vector.
      *
+     * @tparam T Numeric type for vector elements.
      * @param vec Vector as std::vector<T> of size 3
      * @return Quadrance of the vector
      * @throws TrigonomError if vector doesn't have size 3 or overflow occurs
@@ -363,6 +373,7 @@ namespace rattrig {
      * The spread is defined as 1 - (dot)^2 / (q1 * q2), which represents
      * the squared sine of the angle between vectors.
      *
+     * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 3
      * @param v_2 Second vector as std::vector<T> of size 3
      * @return Spread between the two vectors
@@ -391,6 +402,7 @@ namespace rattrig {
      * The triple product is the dot product of one vector with the cross product of the other two.
      * It represents the signed volume of the parallelepiped formed by the three vectors.
      *
+     * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 3
      * @param v_2 Second vector as std::vector<T> of size 3
      * @param v_3 Third vector as std::vector<T> of size 3
@@ -409,22 +421,27 @@ namespace rattrig {
     /**
      * @brief Structure to represent a triangle with points and properties
      */
+    /**
+     * @brief Structure representing a triangle with vertices and computed properties.
+     * @tparam T Numeric type for coordinates and quadrances.
+     */
     template <typename T> struct Triangle {
-        std::vector<T> a;  // First vertex
-        std::vector<T> b;  // Second vertex
-        std::vector<T> c;  // Third vertex
-        T q_ab;            // Quadrance of side AB
-        T q_bc;            // Quadrance of side BC
-        T q_ca;            // Quadrance of side CA
-        T quadrea;         // Quadrea (4 * area^2)
-        T spread_a;        // Spread at vertex A
-        T spread_b;        // Spread at vertex B
-        T spread_c;        // Spread at vertex C
+        std::vector<T> a;  ///< First vertex
+        std::vector<T> b;  ///< Second vertex
+        std::vector<T> c;  ///< Third vertex
+        T q_ab;            ///< Quadrance of side AB
+        T q_bc;            ///< Quadrance of side BC
+        T q_ca;            ///< Quadrance of side CA
+        T quadrea;         ///< Quadrea (4 * area^2)
+        T spread_a;        ///< Spread at vertex A
+        T spread_b;        ///< Spread at vertex B
+        T spread_c;        ///< Spread at vertex C
     };
 
     /**
      * @brief Creates a triangle from three 2D points
      *
+     * @tparam T Numeric type for coordinates.
      * @param a First point (2D vector)
      * @param b Second point (2D vector)
      * @param c Third point (2D vector)
@@ -470,6 +487,7 @@ namespace rattrig {
     /**
      * @brief Solves a triangle given two sides and the included spread (SAS case)
      *
+     * @tparam T Numeric type for quadrances and spread.
      * @param q_1 First quadrance
      * @param q_2 Second quadrance
      * @param spread Included spread between the sides
@@ -528,6 +546,7 @@ namespace rattrig {
     /**
      * @brief Solves a triangle given three quadrances (SSS case)
      *
+     * @tparam T Numeric type for quadrances.
      * @param q_1 First quadrance
      * @param q_2 Second quadrance
      * @param q_3 Third quadrance
@@ -572,6 +591,7 @@ namespace rattrig {
     /**
      * @brief Solves a triangle given two spreads and a quadrance (SSA case)
      *
+     * @tparam T Numeric type for spreads and quadrance.
      * @param spread_1 First spread
      * @param spread_2 Second spread
      * @param q_1 Quadrance between the spreads
@@ -622,6 +642,7 @@ namespace rattrig {
     /**
      * @brief Rotates a 2D vector by a given spread (sine squared of angle)
      *
+     * @tparam T Numeric type for coordinates.
      * @param vec Vector to rotate (2D)
      * @param spread Spread representing rotation (sine squared of angle)
      * @return Rotated vector
@@ -643,6 +664,7 @@ namespace rattrig {
     /**
      * @brief Translates a 2D vector by a translation vector
      *
+     * @tparam T Numeric type for coordinates.
      * @param vec Vector to translate (2D)
      * @param translation Translation vector (2D)
      * @return Translated vector
@@ -659,6 +681,7 @@ namespace rattrig {
     /**
      * @brief Scales a 2D vector by a scalar factor
      *
+     * @tparam T Numeric type for coordinates.
      * @param vec Vector to scale (2D)
      * @param scale Scaling factor
      * @return Scaled vector
@@ -676,6 +699,7 @@ namespace rattrig {
     /**
      * @brief Rotates a 3D vector around the x-axis by a given spread
      *
+     * @tparam T Numeric type for coordinates.
      * @param vec Vector to rotate (3D)
      * @param spread Spread representing rotation (sine squared of angle)
      * @return Rotated vector
@@ -697,6 +721,7 @@ namespace rattrig {
     /**
      * @brief Rotates a 3D vector around the y-axis by a given spread
      *
+     * @tparam T Numeric type for coordinates.
      * @param vec Vector to rotate (3D)
      * @param spread Spread representing rotation (sine squared of angle)
      * @return Rotated vector
@@ -718,6 +743,7 @@ namespace rattrig {
     /**
      * @brief Rotates a 3D vector around the z-axis by a given spread
      *
+     * @tparam T Numeric type for coordinates.
      * @param vec Vector to rotate (3D)
      * @param spread Spread representing rotation (sine squared of angle)
      * @return Rotated vector
