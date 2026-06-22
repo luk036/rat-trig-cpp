@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Comprehensive test suite**:
   - Extended edge case tests for all functions
   - Property-based tests using rapidcheck
-  - Tests with multiple numeric types (int, double, float, long double, long long, fractions)
+  - Tests with multiple numeric types (int, long long, fractions)
   - Division by zero exception tests
   - Constexpr evaluation tests
 - **Performance benchmarks**: Benchmark tests comparing different functions and data types

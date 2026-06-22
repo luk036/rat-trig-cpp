@@ -187,17 +187,17 @@ cmake -S test -B build/test -DENABLE_TEST_COVERAGE=1
 using namespace rattrig;
 
 // Calculate quadrance (squared length) of a vector
-std::vector<double> vec = {3.0, 4.0};
-double q = quad(vec);  // Returns 25.0
+std::vector<int> vec = {3, 4};
+int q = quad(vec);  // Returns 25
 
 // Calculate spread between two vectors
-std::vector<double> v1 = {1.0, 0.0};
-std::vector<double> v2 = {0.0, 1.0};
-double s = spread(v1, v2);  // Returns 1.0 (perpendicular vectors)
+std::vector<int> v1 = {1, 0};
+std::vector<int> v2 = {0, 1};
+int s = spread(v1, v2);  // Returns 1 (perpendicular vectors)
 
 // Use Archimedes' formula
-double q1 = 25.0, q2 = 16.0, q3 = 9.0;
-double quadrea = archimedes(q1, q2, q3);
+int q1 = 25, q2 = 16, q3 = 9;
+int quadrea = archimedes(q1, q2, q3);
 ```
 
 ### Template Support
@@ -207,9 +207,6 @@ All functions are templated and work with any numeric type:
 ```cpp
 // Works with integers
 int qi = archimedes(25, 16, 9);
-
-// Works with doubles
-double qd = archimedes(25.0, 16.0, 9.0);
 
 // Works with custom types (e.g., fractions)
 ```

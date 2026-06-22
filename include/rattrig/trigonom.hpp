@@ -147,13 +147,17 @@ namespace rattrig {
     /**
      * @brief Calculates the quadrea of a triangle using Archimedes' formula.
      *
-     * Takes the lengths of the triangle's three sides as parameters q1, q2, q3.
-     * Returns the quadrea calculation result.
+     * Archimedes' formula computes 4 times the squared area of a triangle from
+     * its side quadrances (squared lengths) \f$Q_1, Q_2, Q_3\f$:
+     * @f[
+     *     A = 4 Q_1 Q_2 - (Q_1 + Q_2 - Q_3)^2
+     * @f]
+     * where \f$A\f$ is the quadrea (16 × area² for a triangle with side lengths).
      *
-     * Can also be used to check if a quadraple of lengths Q1, Q2, Q3, Q4 is on a
-     * circle.
+     * Can also be used to check if a quadruple of lengths \f$Q_1, Q_2, Q_3, Q_4\f$
+     * is concyclic.
      *
-     * @tparam T Numeric type for side lengths (int, double, Fraction, etc.).
+     * @tparam T Numeric type for side lengths (int, Fraction, etc.).
      * @param[in] q_1 Represents the length of the first side of the triangle.
      * @param[in] q_2 Represents the length of the second side of the triangle.
      * @param[in] q_3 The parameter `q_3` represents the length of the third side of
@@ -179,6 +183,11 @@ namespace rattrig {
     /**
      * @brief Calculates the cross product of two 2D vectors.
      *
+     * The scalar (z-component) cross product:
+     * @f[
+     *     v_1 \times v_2 = v_{1x} v_{2y} - v_{1y} v_{2x}
+     * @f]
+     *
      * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 2
      * @param v_2 Second vector as std::vector<T> of size 2
@@ -195,6 +204,10 @@ namespace rattrig {
 
     /**
      * @brief Calculates the dot product of two 2D vectors.
+     *
+     * @f[
+     *     v_1 \cdot v_2 = v_{1x} v_{2x} + v_{1y} v_{2y}
+     * @f]
      *
      * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 2
@@ -213,6 +226,11 @@ namespace rattrig {
     /**
      * @brief Calculates the quadrance (squared length) of a 2D vector.
      *
+     * The quadrance is the squared Euclidean length:
+     * @f[
+     *     Q(v) = v_x^2 + v_y^2 = \|v\|^2
+     * @f]
+     *
      * @tparam T Numeric type for vector elements.
      * @param vec Vector as std::vector<T> of size 2
      * @return Quadrance of the vector
@@ -229,8 +247,10 @@ namespace rattrig {
     /**
      * @brief Calculates the spread between two 2D vectors.
      *
-     * The spread is defined as the square of the cross product divided by
-     * the product of the quadrances of the two vectors.
+     * The spread is the squared sine of the angle between the vectors:
+     * @f[
+     *     s(v_1, v_2) = \frac{(v_1 \times v_2)^2}{Q(v_1) Q(v_2)} = \sin^2\theta
+     * @f]
      *
      * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 2
@@ -257,7 +277,12 @@ namespace rattrig {
     /**
      * @brief Calculates the third quadrance using the triple quad formula.
      *
-     * Given two quadrances and the spread between them, calculates the third quadrance.
+     * Given two quadrances \f$Q_1, Q_2\f$ and the spread \f$s\f$ between them,
+     * calculates the third quadrance:
+     * @f[
+     *     Q_3^2 = (Q_1 + Q_2)^2 - 4 Q_1 Q_2 (1 - s)
+     * @f]
+     * where \f$Q_3 = \sqrt{Q_3^2}\f$ is the third side quadrance.
      *
      * @tparam T Numeric type for quadrances and spread.
      * @param q_1 First quadrance
@@ -281,7 +306,13 @@ namespace rattrig {
     /**
      * @brief Calculates the spread using the spread law.
      *
-     * Given three quadrances of a triangle, calculates the spread.
+     * Given three quadrances of a triangle, calculates the spread opposite
+     * the side \f$Q_3\f$:
+     * @f[
+     *     s = 1 - \frac{(Q_1 + Q_2 - Q_3)^2}{4 Q_1 Q_2}
+     * @f]
+     * This is the rational trigonometry analogue of the law of sines:
+     * \f$\displaystyle \frac{s_1}{Q_1} = \frac{s_2}{Q_2} = \frac{s_3}{Q_3}\f$.
      *
      * @tparam T Numeric type for quadrances.
      * @param q_1 First quadrance
@@ -307,6 +338,10 @@ namespace rattrig {
     /**
      * @brief Calculates the dot product of two 3D vectors.
      *
+     * @f[
+     *     v_1 \cdot v_2 = v_{1x} v_{2x} + v_{1y} v_{2y} + v_{1z} v_{2z}
+     * @f]
+     *
      * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 3
      * @param v_2 Second vector as std::vector<T> of size 3
@@ -324,6 +359,14 @@ namespace rattrig {
 
     /**
      * @brief Calculates the cross product of two 3D vectors.
+     *
+     * @f[
+     *     v_1 \times v_2 = \begin{pmatrix}
+     *         v_{1y} v_{2z} - v_{1z} v_{2y} \\
+     *         v_{1z} v_{2x} - v_{1x} v_{2z} \\
+     *         v_{1x} v_{2y} - v_{1y} v_{2x}
+     *     \end{pmatrix}
+     * @f]
      *
      * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 3
@@ -351,6 +394,10 @@ namespace rattrig {
     /**
      * @brief Calculates the quadrance (squared length) of a 3D vector.
      *
+     * @f[
+     *     Q(v) = v_x^2 + v_y^2 + v_z^2 = \|v\|^2
+     * @f]
+     *
      * @tparam T Numeric type for vector elements.
      * @param vec Vector as std::vector<T> of size 3
      * @return Quadrance of the vector
@@ -370,8 +417,10 @@ namespace rattrig {
     /**
      * @brief Calculates the spread between two 3D vectors.
      *
-     * The spread is defined as 1 - (dot)^2 / (q1 * q2), which represents
-     * the squared sine of the angle between vectors.
+     * The spread is the squared sine of the angle between the vectors:
+     * @f[
+     *     s(v_1, v_2) = 1 - \frac{(v_1 \cdot v_2)^2}{Q(v_1) Q(v_2)} = \sin^2\theta
+     * @f]
      *
      * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 3
@@ -399,7 +448,10 @@ namespace rattrig {
     /**
      * @brief Calculates the triple product of three 3D vectors.
      *
-     * The triple product is the dot product of one vector with the cross product of the other two.
+     * The scalar triple product:
+     * @f[
+     *     [v_1, v_2, v_3] = v_1 \cdot (v_2 \times v_3)
+     * @f]
      * It represents the signed volume of the parallelepiped formed by the three vectors.
      *
      * @tparam T Numeric type for vector elements.
@@ -642,6 +694,14 @@ namespace rattrig {
     /**
      * @brief Rotates a 2D vector by a given spread (sine squared of angle)
      *
+     * The rotation matrix using spread \f$s = \sin^2\theta\f$:
+     * @f[
+     *     \begin{pmatrix}x'\\y'\end{pmatrix}
+     *     = \begin{pmatrix}\cos\theta & -\sin\theta\\\sin\theta & \cos\theta\end{pmatrix}
+     *     \begin{pmatrix}x\\y\end{pmatrix}
+     * @f]
+     * where \f$\cos\theta = \sqrt{1-s}\f$ and \f$\sin\theta = \sqrt{s}\f$.
+     *
      * @tparam T Numeric type for coordinates.
      * @param vec Vector to rotate (2D)
      * @param spread Spread representing rotation (sine squared of angle)
@@ -699,6 +759,15 @@ namespace rattrig {
     /**
      * @brief Rotates a 3D vector around the x-axis by a given spread
      *
+     * Rotation about the x-axis using spread \f$s = \sin^2\theta\f$:
+     * @f[
+     *     R_x(\theta) = \begin{pmatrix}
+     *         1 & 0 & 0 \\
+     *         0 & \cos\theta & -\sin\theta \\
+     *         0 & \sin\theta & \cos\theta
+     *     \end{pmatrix}
+     * @f]
+     *
      * @tparam T Numeric type for coordinates.
      * @param vec Vector to rotate (3D)
      * @param spread Spread representing rotation (sine squared of angle)
@@ -721,6 +790,15 @@ namespace rattrig {
     /**
      * @brief Rotates a 3D vector around the y-axis by a given spread
      *
+     * Rotation about the y-axis using spread \f$s = \sin^2\theta\f$:
+     * @f[
+     *     R_y(\theta) = \begin{pmatrix}
+     *         \cos\theta & 0 & \sin\theta \\
+     *         0 & 1 & 0 \\
+     *         -\sin\theta & 0 & \cos\theta
+     *     \end{pmatrix}
+     * @f]
+     *
      * @tparam T Numeric type for coordinates.
      * @param vec Vector to rotate (3D)
      * @param spread Spread representing rotation (sine squared of angle)
@@ -742,6 +820,15 @@ namespace rattrig {
 
     /**
      * @brief Rotates a 3D vector around the z-axis by a given spread
+     *
+     * Rotation about the z-axis using spread \f$s = \sin^2\theta\f$:
+     * @f[
+     *     R_z(\theta) = \begin{pmatrix}
+     *         \cos\theta & -\sin\theta & 0 \\
+     *         \sin\theta & \cos\theta & 0 \\
+     *         0 & 0 & 1
+     *     \end{pmatrix}
+     * @f]
      *
      * @tparam T Numeric type for coordinates.
      * @param vec Vector to rotate (3D)

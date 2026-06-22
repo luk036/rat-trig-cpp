@@ -147,7 +147,7 @@ AccessModifierOffset: -2
 
 ### Type Guidelines
 
-- Use **template functions** for generic numeric types (`int`, `double`, `float`, `Fraction`)
+- Use **template functions** for generic numeric types (`int`, `Fraction`)
 - Prefer `std::vector<T>` for dynamic arrays; `std::array<T, N>` for fixed-size
 - Use `std::size_t` for container sizes
 - Use `constexpr` whenever possible for compile-time evaluation
@@ -205,7 +205,7 @@ Template functions support any numeric type:
 ```cpp
 template <typename T>
 constexpr T quad(const std::vector<T>& vec) {
-    // Works with int, double, Fraction<T>, etc.
+    // Works with int, Fraction<T>, etc.
 }
 ```
 
@@ -283,8 +283,11 @@ TEST_CASE("Property: dot product is commutative") {
 // Test with int
 CHECK_EQ(archimedes(2, 4, 6), 32);
 
-// Test with double
-CHECK_EQ(archimedes(2.0, 4.0, 6.0), 32.0);
+// Test with Fraction
+fractions::Fraction<int> f1(1, 2);
+fractions::Fraction<int> f2(1, 4);
+fractions::Fraction<int> f3(1, 6);
+CHECK_EQ(archimedes(f1, f2, f3), fractions::Fraction<int>(23, 144));
 
 // Test with Fraction
 fractions::Fraction<int> q_1(1, 2);
@@ -328,7 +331,7 @@ TEST_CASE("Error handling - invalid vector size") {
 2. Use template for generic numeric type support
 3. Add input validation functions
 4. Add tests to `test/source/test_trigonom.cpp`
-5. Test with int, double, and Fraction types
+5. Test with int and Fraction types
 
 ### Running Tests During Development
 

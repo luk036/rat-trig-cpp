@@ -20,7 +20,7 @@ Rational trigonometry, developed by Norman Wildberger, replaces traditional conc
 This library provides:
 
 - **Modern C++17 implementation** with constexpr support
-- **Template-based functions** working with any numeric type (int, double, float, fractions)
+- **Template-based functions** working with any numeric type (int, fractions)
 - **std::array and std::vector support** for 2D vector operations
 - **Comprehensive test suite** with property-based testing
 - **Performance benchmarks** for optimization
@@ -63,19 +63,19 @@ using namespace rattrig;
 
 int main() {
     // Calculate quadrance (squared length) of vector (3, 4)
-    std::array<double, 2> vec = {3.0, 4.0};
-    double q = quad(vec);
+    std::array<int, 2> vec = {3, 4};
+    int q = quad(vec);
     std::cout << "Quadrance: " << q << '\n';  // Output: 25
 
     // Calculate spread (squared sine) between orthogonal vectors
-    std::array<double, 2> x_axis = {1.0, 0.0};
-    std::array<double, 2> y_axis = {0.0, 1.0};
-    double s = spread(x_axis, y_axis);
+    std::array<int, 2> x_axis = {1, 0};
+    std::array<int, 2> y_axis = {0, 1};
+    int s = spread(x_axis, y_axis);
     std::cout << "Spread (orthogonal): " << s << '\n';  // Output: 1
 
     // Use Archimedes' formula to calculate quadrea
-    double q1 = 25.0, q2 = 16.0, q3 = 9.0;
-    double quadrea = archimedes(q1, q2, q3);
+    int q1 = 25, q2 = 16, q3 = 9;
+    int quadrea = archimedes(q1, q2, q3);
     std::cout << "Quadrea: " << quadrea << '\n';
 
     return 0;
@@ -95,10 +95,6 @@ using namespace rattrig;
 std::array<int, 2> v_int = {3, 4};
 int q_int = quad(v_int);  // 25
 
-// Works with doubles
-std::array<double, 2> v_double = {3.5, 4.5};
-double q_double = quad(v_double);  // 32.5
-
 // Works with fractions for exact rational arithmetic
 std::array<fractions::Fraction<int>, 2> v_frac = {
     fractions::Fraction<int>(3, 5),
@@ -111,8 +107,8 @@ auto q_frac = quad(v_frac);  // Exactly 1
 
 ```cpp
 // Create a dilated directed angle (QuadAngle)
-std::array<double, 2> v1 = {1.0, 2.0};
-std::array<double, 2> v2 = {3.0, 4.0};
+std::array<int, 2> v1 = {1, 2};
+std::array<int, 2> v2 = {3, 4};
 
 auto qa = make_quadangle(v1, v2);
 std::cout << "Spread: " << qa.spread << '\n';
@@ -120,8 +116,8 @@ std::cout << "Quad: " << qa.quad << '\n';
 std::cout << "Sign: " << (qa.sign ? "positive" : "negative") << '\n';
 
 // Check if four quadrances form a cyclic quad
-double Q1 = 2.0, Q2 = 4.0, Q3 = 6.0;
-double Q4 = archimedes(Q1, Q2, Q3);
+int Q1 = 2, Q2 = 4, Q3 = 6;
+int Q4 = archimedes(Q1, Q2, Q3);
 bool is_cyclic = is_cyclic_quad(Q1, Q2, Q3, Q4);
 ```
 

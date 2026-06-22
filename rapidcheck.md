@@ -142,12 +142,12 @@ TEST_CASE("Property-based test: quad of zero vector is zero") {
 
 TEST_CASE("Property-based test: spread is always between 0 and 1") {
     rc::check("0 <= spread(v1, v2) <= 1",
-              [](const std::vector<double>& v1, const std::vector<double>& v2) {
+              [](const std::vector<int>& v1, const std::vector<int>& v2) {
                   RC_PRE(v1.size() == 2 && v2.size() == 2);
                   RC_PRE(v1[0] != 0 || v1[1] != 0);
                   RC_PRE(v2[0] != 0 || v2[1] != 0);
-                  double spr = spread(v1, v2);
-                  RC_ASSERT(spr >= 0.0 && spr <= 1.0);
+                  int spr = spread(v1, v2);
+                  RC_ASSERT(spr >= 0 && spr <= 1);
               });
 }
 

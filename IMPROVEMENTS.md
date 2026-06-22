@@ -10,7 +10,7 @@ This document summarizes all improvements made to the rat-trig-cpp project.
 Added extensive test coverage including:
 - **Edge cases**: Zero vectors, large values, degenerate triangles, equality cases
 - **Property-based tests**: Using rapidcheck for commutativity, anti-commutativity, invariants
-- **Type coverage**: Tests with int, double, float, long double, long long, and fractions
+- **Type coverage**: Tests with int, long long, and fractions
 - **Exception testing**: Division by zero protection verification
 - **Constexpr validation**: Compile-time evaluation tests
 - **40+ new test cases** covering all functions
@@ -76,7 +76,7 @@ pkg-config --libs rattrig
 - **Mathematical concepts section**: Explains rational trigonometry
 - **Comprehensive usage examples**:
   - Basic usage with output
-  - Multiple type support (int, double, fractions)
+  - Multiple type support (int, fractions)
   - Advanced features (QuadAngle, cyclic quads)
   - Compile-time evaluation examples
 - **Clear feature list** with specific benefits
