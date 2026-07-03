@@ -374,10 +374,9 @@ namespace rattrig {
      *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
      *     v1 [label="v1\n(x1,y1,z1)", fillcolor="#a9cce3"];
      *     v2 [label="v2\n(x2,y2,z2)", fillcolor="#a9cce3"];
-     *     compute [label="v1 × v2 =\n(y1*z2 - z1*y2,\n z1*x2 - x1*z2,\n x1*y2 - y1*x2)", fillcolor="#f9e79f"];
-     *     result [label="Result vector\northogonal to both", fillcolor="#7fb3d8"];
-     *     v1 -> compute; v2 -> compute;
-     *     compute -> result;
+     *     compute [label="v1 × v2 =\n(y1*z2 - z1*y2,\n z1*x2 - x1*z2,\n x1*y2 - y1*x2)",
+     * fillcolor="#f9e79f"]; result [label="Result vector\northogonal to both",
+     * fillcolor="#7fb3d8"]; v1 -> compute; v2 -> compute; compute -> result;
      *   }
      * @enddot
      *
