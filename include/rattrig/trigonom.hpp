@@ -368,6 +368,18 @@ namespace rattrig {
      *     \end{pmatrix}
      * @f]
      *
+     * @dot
+     *   digraph cross3d {
+     *     bgcolor="transparent"; rankdir=LR;
+     *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
+     *     v1 [label="v1\n(x1,y1,z1)", fillcolor="#a9cce3"];
+     *     v2 [label="v2\n(x2,y2,z2)", fillcolor="#a9cce3"];
+     *     compute [label="v1 × v2 =\n(y1*z2 - z1*y2,\n z1*x2 - x1*z2,\n x1*y2 - y1*x2)",
+     * fillcolor="#f9e79f"]; result [label="Result vector\northogonal to both",
+     * fillcolor="#7fb3d8"]; v1 -> compute; v2 -> compute; compute -> result;
+     *   }
+     * @enddot
+     *
      * @tparam T Numeric type for vector elements.
      * @param v_1 First vector as std::vector<T> of size 3
      * @param v_2 Second vector as std::vector<T> of size 3
@@ -492,6 +504,21 @@ namespace rattrig {
 
     /**
      * @brief Creates a triangle from three 2D points
+     *
+     * @dot
+     *   digraph triangle_geo {
+     *     bgcolor="transparent";
+     *     node [shape=point, width=0.2];
+     *     edge [fontsize=10];
+     *     a [label="A", shape=none, fontcolor="#2980b9"];
+     *     b [label="B", shape=none, fontcolor="#2980b9"];
+     *     c [label="C", shape=none, fontcolor="#2980b9"];
+     *     a -> b [label="Q_ab", color="#27ae60"];
+     *     b -> c [label="Q_bc", color="#27ae60"];
+     *     c -> a [label="Q_ca", color="#e74c3c"];
+     *     a -> c [style=invis];
+     *   }
+     * @enddot
      *
      * @tparam T Numeric type for coordinates.
      * @param a First point (2D vector)
@@ -701,6 +728,20 @@ namespace rattrig {
      *     \begin{pmatrix}x\\y\end{pmatrix}
      * @f]
      * where \f$\cos\theta = \sqrt{1-s}\f$ and \f$\sin\theta = \sqrt{s}\f$.
+     *
+     * @dot
+     *   digraph rotate_2d {
+     *     bgcolor="transparent"; rankdir=LR;
+     *     node [shape=box, style=filled, fillcolor="#d4e6f1"];
+     *     vec [label="(x, y)", fillcolor="#a9cce3"];
+     *     spread [label="s = sin²(theta)", fillcolor="#a9cce3"];
+     *     trig [label="cos = sqrt(1-s)\nsin = sqrt(s)", fillcolor="#f9e79f"];
+     *     rot [label="R(theta) =\n[cos -sin]\n[sin  cos]", fillcolor="#f9e79f"];
+     *     out [label="(x', y')", fillcolor="#7fb3d8"];
+     *     vec -> rot; spread -> trig -> rot;
+     *     rot -> out;
+     *   }
+     * @enddot
      *
      * @tparam T Numeric type for coordinates.
      * @param vec Vector to rotate (2D)
