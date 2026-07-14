@@ -1,6 +1,6 @@
 CPMAddPackage(
   NAME Fractions
-  GIT_TAG 1.1.1
+  GIT_TAG v1.1.3
   GITHUB_REPOSITORY luk036/fractions-cpp
 )
 
