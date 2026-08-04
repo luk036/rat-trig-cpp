@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.14...3.22)
 # Note: update this to your new project's name and version
 project(
   RatTrig
-  VERSION 1.0.3
+  VERSION 1.0.4
   LANGUAGES CXX
 )
 
@@ -27,12 +27,18 @@ include(cmake/specific.cmake)
 # PackageProject.cmake will be used to make our target installable
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 
-CPMAddPackage(
-  NAME fmt
-  GIT_TAG 12.1.0
-  GITHUB_REPOSITORY fmtlib/fmt
-  OPTIONS "FMT_INSTALL YES" # create an installable target
-)
+find_package(fmt CONFIG QUIET)
+if(fmt_FOUND)
+  message(STATUS "Found system fmt: ${fmt_DIR}")
+  set(CPM_fmt_ADDED YES)
+else()
+  CPMAddPackage(
+    NAME fmt
+    GIT_TAG 12.1.0
+    GITHUB_REPOSITORY fmtlib/fmt
+    OPTIONS "FMT_INSTALL YES" # create an installable target
+  )
+endif()
 
 # ---- Add source files ----
 
