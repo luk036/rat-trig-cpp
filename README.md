@@ -144,9 +144,9 @@ static_assert(d == 27, "Dot product should be 27");
 Use the following command to build and run the executable target.
 
 ```bash
-cmake -S standalone -B build/standalone
-cmake --build build/standalone
-./build/standalone/RatTrig --help
+cmake -S . -B build
+cmake --build build
+./build/RatTrig --help
 ```
 
 ### Build and run test suite
@@ -154,15 +154,15 @@ cmake --build build/standalone
 Use the following commands from the project's root directory to run the test suite.
 
 ```bash
-cmake -S test -B build/test
-cmake --build build/test
-CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
+cmake -S . -B build
+cmake --build build
+ctest --test-dir build --output-on-failure
 
 # or simply call the executable:
-./build/test/RatTrigTests
+./build/RatTrigTests
 ```
 
-To collect code coverage information, run CMake with the `-DENABLE_TEST_COVERAGE=1` option.
+To collect code coverage information, run CMake with the `-DRATTRIG_ENABLE_COVERAGE=ON` option (GCC/Clang only) and build the `coverage` target.
 
 ### Run clang-format
 
@@ -170,13 +170,13 @@ Use the following commands from the project's root directory to check and fix C+
 This requires _clang-format_, _cmake-format_ and _pyyaml_ to be installed on the current system.
 
 ```bash
-cmake -S test -B build/test
+cmake -S . -B build
 
 # view changes
-cmake --build build/test --target format
+cmake --build build --target format
 
 # apply changes
-cmake --build build/test --target fix-format
+cmake --build build --target fix-format
 ```
 
 See [Format.cmake](https://github.com/TheLartians/Format.cmake) for details.
@@ -192,51 +192,41 @@ The documentation is automatically built and [published](https://thelartians.git
 To manually build documentation, call the following command.
 
 ```bash
-cmake -S documentation -B build/doc
-cmake --build build/doc --target GenerateDocs
+cmake -S . -B build -DRATTRIG_BUILD_DOCS=ON
+cmake --build build --target GenerateDocs
 # view the docs
-open build/doc/doxygen/html/index.html
+open build/doxygen/html/index.html
 ```
 
 To build the documentation locally, you will need Doxygen, jinja2 and Pygments installed on your system.
 
 ### Build everything at once
 
-The project also includes an `all` directory that allows building all targets at the same time.
-This is useful during development, as it exposes all subprojects to your IDE and avoids redundant builds of the library.
+The single root `CMakeLists.txt` defines the library, standalone executable and tests, so a single configure step builds everything.
 
 ```bash
-cmake -S all -B build
+cmake -S . -B build
 cmake --build build
 
 # run tests
-./build/test/RatTrigTests
+./build/RatTrigTests
 # format code
 cmake --build build --target fix-format
 # run standalone
-./build/standalone/RatTrig --help
-# build docs
+./build/RatTrig --help
+# build docs (requires -DRATTRIG_BUILD_DOCS=ON at configure time)
 cmake --build build --target GenerateDocs
 ```
 
 ### Additional tools
 
-The test and standalone subprojects include the [tools.cmake](cmake/tools.cmake) file which is used to import additional tools on-demand through CMake configuration arguments.
-The following are currently supported.
+#### Static analysis
 
-#### Sanitizers
+clang-tidy can be enabled by configuring CMake with `-DRATTRIG_ENABLE_CLANG_TIDY=ON`; this provides a `clang-tidy` target that analyzes the public headers.
 
-Sanitizers can be enabled by configuring CMake with `-DUSE_SANITIZER=<Address | Memory | MemoryWithOrigins | Undefined | Thread | Leak | 'Address;Undefined'>`.
+#### Code coverage
 
-#### Static Analyzers
-
-Static Analyzers can be enabled by setting `-DUSE_STATIC_ANALYZER=<clang-tidy | iwyu | cppcheck>`, or a combination of those in quotation marks, separated by semicolons.
-By default, analyzers will automatically find configuration files such as `.clang-format`.
-Additional arguments can be passed to the analyzers by setting the `CLANG_TIDY_ARGS`, `IWYU_ARGS` or `CPPCHECK_ARGS` variables.
-
-#### Ccache
-
-Ccache can be enabled by configuring with `-DUSE_CCACHE=<ON | OFF>`.
+Code coverage (GCC/Clang, via gcovr) can be enabled by configuring CMake with `-DRATTRIG_ENABLE_COVERAGE=ON`; this provides a `coverage` target that runs the tests and writes an HTML report to `build/coverage/index.html`.
 
 ## ❓ FAQ
 
@@ -251,10 +241,7 @@ Simply remove the standalone / documentation directory and according github work
 
 > Can I build the standalone and tests at the same time? / How can I tell my IDE about all subprojects?
 
-To keep the template modular, all subprojects derived from the library have been separated into their own CMake modules.
-This approach makes it trivial for third-party projects to re-use the projects library code.
-To allow IDEs to see the full scope of the project, the template includes the `all` directory that will create a single build for all subprojects.
-Use this as the main directory for best IDE support.
+All targets (library, standalone, tests, docs) are defined in the single root `CMakeLists.txt`, so a single `cmake -S . -B build` configuration exposes everything to your IDE at once.
 
 > I see you are using `GLOB` to add source files in CMakeLists.txt. Isn't that evil?
 
@@ -264,7 +251,7 @@ I personally prefer the `GLOB` solution for its simplicity, but feel free to cha
 > I want create additional targets that depend on my library. Should I modify the main CMakeLists to include them?
 
 Avoid including derived projects from the libraries CMakeLists (even though it is a common sight in the C++ world), as this effectively inverts the dependency tree and makes the build system hard to reason about.
-Instead, create a new directory or project with a CMakeLists that adds the library as a dependency (e.g. like the [standalone](standalone/CMakeLists.txt) directory).
+Instead, create a new directory or project with a CMakeLists that adds the library as a dependency (e.g. like the [test_installed](test_installed/CMakeLists.txt) directory).
 Depending type it might make sense move these components into a separate repositories and reference a specific commit or version of the library.
 This has the advantage that individual libraries and components can be improved and updated independently.
 
