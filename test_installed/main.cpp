@@ -1,7 +1,7 @@
-#include <rattrig/trigonom.hpp>
 #include <rattrig/version.h>
 
 #include <cassert>
+#include <rattrig/trigonom.hpp>
 #include <vector>
 
 auto main() -> int {
