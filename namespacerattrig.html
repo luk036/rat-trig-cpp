@@ -28,7 +28,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">RatTrig<span id="projectnumber">&#160;1.0.4;  VERSION ${PROJECT_VERSION}</span>
+   <div id="projectname">RatTrig<span id="projectnumber">&#160;1.0.5</span>
    </div>
   </td>
  </tr>
@@ -88,11 +88,32 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrattrig_1_1Line2D.html">Line2D</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 2D line represented as ax + by + c = 0.  <a href="structrattrig_1_1Line2D.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrattrig_1_1Point2D.html">Point2D</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 2D point with coordinates of type T.  <a href="structrattrig_1_1Point2D.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrattrig_1_1Point3D.html">Point3D</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 3D point with coordinates of type T.  <a href="structrattrig_1_1Point3D.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrattrig_1_1Triangle.html">Triangle</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to represent a triangle with points and properties.  <a href="structrattrig_1_1Triangle.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrattrig_1_1Triangle2D.html">Triangle2D</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 2D triangle defined by three points.  <a href="structrattrig_1_1Triangle2D.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrattrig_1_1Triangle3D.html">Triangle3D</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 3D triangle defined by three points.  <a href="structrattrig_1_1Triangle3D.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrattrig_1_1TrigonomError.html">TrigonomError</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exception class for rational trigonometry errors.  <a href="classrattrig_1_1TrigonomError.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrattrig_1_1Vector2D.html">Vector2D</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 2D vector with components of type T.  <a href="structrattrig_1_1Vector2D.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrattrig_1_1Vector3D.html">Vector3D</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 3D vector with components of type T.  <a href="structrattrig_1_1Vector3D.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -209,6 +230,54 @@ Functions</h2></td></tr>
 <tr class="memitem:a3a2653e5b541df214afa9bcb6a38484e"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#a3a2653e5b541df214afa9bcb6a38484e">rotate_3d_z</a> (const std::vector&lt; T &gt; &amp;vec, const T &amp;<a class="el" href="namespacerattrig.html#aadd90607f8923cafd5cb81fffa3b5202">spread</a>)</td></tr>
 <tr class="memdesc:a3a2653e5b541df214afa9bcb6a38484e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates a 3D vector around the z-axis by a given spread.  <br /></td></tr>
 <tr class="separator:a3a2653e5b541df214afa9bcb6a38484e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a800447bd5b77877366d1a241a0b0629e" id="r_a800447bd5b77877366d1a241a0b0629e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a800447bd5b77877366d1a241a0b0629e"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#a800447bd5b77877366d1a241a0b0629e">are_collinear</a> (const std::pair&lt; T, T &gt; &amp;p_1, const std::pair&lt; T, T &gt; &amp;p_2, const std::pair&lt; T, T &gt; &amp;p_3) noexcept</td></tr>
+<tr class="memdesc:a800447bd5b77877366d1a241a0b0629e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if three 2D points are collinear.  <br /></td></tr>
+<tr class="separator:a800447bd5b77877366d1a241a0b0629e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ba814108fbd0359d31055bb28801041" id="r_a4ba814108fbd0359d31055bb28801041"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a4ba814108fbd0359d31055bb28801041"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#a4ba814108fbd0359d31055bb28801041">is_valid_triangle</a> (const std::pair&lt; T, T &gt; &amp;p_1, const std::pair&lt; T, T &gt; &amp;p_2, const std::pair&lt; T, T &gt; &amp;p_3) noexcept</td></tr>
+<tr class="memdesc:a4ba814108fbd0359d31055bb28801041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if three points form a valid (non-degenerate) triangle.  <br /></td></tr>
+<tr class="separator:a4ba814108fbd0359d31055bb28801041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73bca0905fe210e67779d606f5ce8f9d" id="r_a73bca0905fe210e67779d606f5ce8f9d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a73bca0905fe210e67779d606f5ce8f9d"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#a73bca0905fe210e67779d606f5ce8f9d">is_valid_quadrance</a> (const T &amp;q) noexcept</td></tr>
+<tr class="memdesc:a73bca0905fe210e67779d606f5ce8f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a quadrance value is valid (non-negative).  <br /></td></tr>
+<tr class="separator:a73bca0905fe210e67779d606f5ce8f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b175e305c2b28696f3c1fbd7af22fdb" id="r_a3b175e305c2b28696f3c1fbd7af22fdb"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a3b175e305c2b28696f3c1fbd7af22fdb"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#a3b175e305c2b28696f3c1fbd7af22fdb">is_valid_spread</a> (const T &amp;s) noexcept</td></tr>
+<tr class="memdesc:a3b175e305c2b28696f3c1fbd7af22fdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a spread value is valid (in [0, 1]).  <br /></td></tr>
+<tr class="separator:a3b175e305c2b28696f3c1fbd7af22fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a001fa48bf8457c4acef2bd51bdb3b684" id="r_a001fa48bf8457c4acef2bd51bdb3b684"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a001fa48bf8457c4acef2bd51bdb3b684"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#a001fa48bf8457c4acef2bd51bdb3b684">satisfies_triangle_inequality</a> (const T &amp;q_1, const T &amp;q_2, const T &amp;q_3) noexcept</td></tr>
+<tr class="memdesc:a001fa48bf8457c4acef2bd51bdb3b684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the triangle inequality for three quadrances.  <br /></td></tr>
+<tr class="separator:a001fa48bf8457c4acef2bd51bdb3b684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25535c7d99e17d6357dd7b200da87e3e" id="r_a25535c7d99e17d6357dd7b200da87e3e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a25535c7d99e17d6357dd7b200da87e3e"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#a25535c7d99e17d6357dd7b200da87e3e">is_acute_triangle</a> (const T &amp;s_1, const T &amp;s_2, const T &amp;s_3) noexcept</td></tr>
+<tr class="memdesc:a25535c7d99e17d6357dd7b200da87e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a triangle is acute-angled (all spreads &lt; 1).  <br /></td></tr>
+<tr class="separator:a25535c7d99e17d6357dd7b200da87e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae04e6bf0e69c21c2271267ee86c6e717" id="r_ae04e6bf0e69c21c2271267ee86c6e717"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ae04e6bf0e69c21c2271267ee86c6e717"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#ae04e6bf0e69c21c2271267ee86c6e717">is_right_triangle</a> (const T &amp;s_1, const T &amp;s_2, const T &amp;s_3) noexcept</td></tr>
+<tr class="memdesc:ae04e6bf0e69c21c2271267ee86c6e717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a triangle is right-angled (one spread = 1).  <br /></td></tr>
+<tr class="separator:ae04e6bf0e69c21c2271267ee86c6e717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9134505e76b70b66750b3e86828f13c" id="r_af9134505e76b70b66750b3e86828f13c"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af9134505e76b70b66750b3e86828f13c"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#af9134505e76b70b66750b3e86828f13c">is_obtuse_triangle</a> (const T &amp;s_1, const T &amp;s_2, const T &amp;s_3) noexcept</td></tr>
+<tr class="memdesc:af9134505e76b70b66750b3e86828f13c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a triangle is obtuse-angled (one spread &gt; 0.5).  <br /></td></tr>
+<tr class="separator:af9134505e76b70b66750b3e86828f13c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0691e4fcc47fa0c9de635e03c372e1ec" id="r_a0691e4fcc47fa0c9de635e03c372e1ec"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a0691e4fcc47fa0c9de635e03c372e1ec"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#a0691e4fcc47fa0c9de635e03c372e1ec">are_lines_parallel</a> (const std::tuple&lt; T, T, T &gt; &amp;l_1, const std::tuple&lt; T, T, T &gt; &amp;l_2) noexcept</td></tr>
+<tr class="memdesc:a0691e4fcc47fa0c9de635e03c372e1ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if two lines are parallel.  <br /></td></tr>
+<tr class="separator:a0691e4fcc47fa0c9de635e03c372e1ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a220c9581918a576ad298fca57b8f7033" id="r_a220c9581918a576ad298fca57b8f7033"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a220c9581918a576ad298fca57b8f7033"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#a220c9581918a576ad298fca57b8f7033">are_lines_perpendicular</a> (const std::tuple&lt; T, T, T &gt; &amp;l_1, const std::tuple&lt; T, T, T &gt; &amp;l_2) noexcept</td></tr>
+<tr class="memdesc:a220c9581918a576ad298fca57b8f7033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if two lines are perpendicular.  <br /></td></tr>
+<tr class="separator:a220c9581918a576ad298fca57b8f7033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac13670a91dddf314821b99553b6fc6c6" id="r_ac13670a91dddf314821b99553b6fc6c6"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ac13670a91dddf314821b99553b6fc6c6"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#ac13670a91dddf314821b99553b6fc6c6">point_on_line</a> (const std::pair&lt; T, T &gt; &amp;point, const std::tuple&lt; T, T, T &gt; &amp;line) noexcept</td></tr>
+<tr class="memdesc:ac13670a91dddf314821b99553b6fc6c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a point lies on a line.  <br /></td></tr>
+<tr class="separator:ac13670a91dddf314821b99553b6fc6c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0de2b3a53859ae99e010a2b68a2178d" id="r_aa0de2b3a53859ae99e010a2b68a2178d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aa0de2b3a53859ae99e010a2b68a2178d"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacerattrig.html#aa0de2b3a53859ae99e010a2b68a2178d">point_in_triangle</a> (const std::pair&lt; T, T &gt; &amp;point, const std::pair&lt; T, T &gt; &amp;p_1, const std::pair&lt; T, T &gt; &amp;p_2, const std::pair&lt; T, T &gt; &amp;p_3) noexcept</td></tr>
+<tr class="memdesc:aa0de2b3a53859ae99e010a2b68a2178d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a point lies inside a triangle using barycentric coordinates.  <br /></td></tr>
+<tr class="separator:aa0de2b3a53859ae99e010a2b68a2178d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Rational Trigonometry library namespace. </p>
@@ -280,6 +349,148 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The function <code>archimedes</code> returns the area of a triangle computed using Archimedes' formula, given the lengths of the 3 sides. </dd></dl>
 
+</div>
+</div>
+<a id="a800447bd5b77877366d1a241a0b0629e" name="a800447bd5b77877366d1a241a0b0629e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a800447bd5b77877366d1a241a0b0629e">&#9670;&#160;</a></span>are_collinear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::are_collinear </td>
+          <td>(</td>
+          <td class="paramtype">const std::pair&lt; T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if three 2D points are collinear. </p>
+<p class="formulaDsp">
+\[
+    (p_2 - p_1) \times (p_3 - p_1) = 0
+\]
+</p>
+<dl class="section return"><dt>Returns</dt><dd>true if the cross product of vectors (p2-p1) and (p3-p1) is zero. </dd></dl>
+
+</div>
+</div>
+<a id="a0691e4fcc47fa0c9de635e03c372e1ec" name="a0691e4fcc47fa0c9de635e03c372e1ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0691e4fcc47fa0c9de635e03c372e1ec">&#9670;&#160;</a></span>are_lines_parallel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::are_lines_parallel </td>
+          <td>(</td>
+          <td class="paramtype">const std::tuple&lt; T, T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>l_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::tuple&lt; T, T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>l_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if two lines are parallel. </p>
+<p class="formulaDsp">
+\[
+    a_1 b_2 - a_2 b_1 = 0
+\]
+</p>
+ 
+</div>
+</div>
+<a id="a220c9581918a576ad298fca57b8f7033" name="a220c9581918a576ad298fca57b8f7033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a220c9581918a576ad298fca57b8f7033">&#9670;&#160;</a></span>are_lines_perpendicular()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::are_lines_perpendicular </td>
+          <td>(</td>
+          <td class="paramtype">const std::tuple&lt; T, T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>l_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::tuple&lt; T, T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>l_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if two lines are perpendicular. </p>
+<p class="formulaDsp">
+\[
+    a_1 a_2 + b_1 b_2 = 0
+\]
+</p>
+ 
 </div>
 </div>
 <a id="aca50f4521eb88fe6817983730b7b6057" name="aca50f4521eb88fe6817983730b7b6057"></a>
@@ -615,6 +826,347 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
+</div>
+</div>
+<a id="a25535c7d99e17d6357dd7b200da87e3e" name="a25535c7d99e17d6357dd7b200da87e3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25535c7d99e17d6357dd7b200da87e3e">&#9670;&#160;</a></span>is_acute_triangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::is_acute_triangle </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>s_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>s_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>s_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a triangle is acute-angled (all spreads &lt; 1). </p>
+
+</div>
+</div>
+<a id="af9134505e76b70b66750b3e86828f13c" name="af9134505e76b70b66750b3e86828f13c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9134505e76b70b66750b3e86828f13c">&#9670;&#160;</a></span>is_obtuse_triangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::is_obtuse_triangle </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>s_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>s_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>s_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a triangle is obtuse-angled (one spread &gt; 0.5). </p>
+
+</div>
+</div>
+<a id="ae04e6bf0e69c21c2271267ee86c6e717" name="ae04e6bf0e69c21c2271267ee86c6e717"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae04e6bf0e69c21c2271267ee86c6e717">&#9670;&#160;</a></span>is_right_triangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::is_right_triangle </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>s_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>s_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>s_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a triangle is right-angled (one spread = 1). </p>
+
+</div>
+</div>
+<a id="a73bca0905fe210e67779d606f5ce8f9d" name="a73bca0905fe210e67779d606f5ce8f9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73bca0905fe210e67779d606f5ce8f9d">&#9670;&#160;</a></span>is_valid_quadrance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::is_valid_quadrance </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>q</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a quadrance value is valid (non-negative). </p>
+
+</div>
+</div>
+<a id="a3b175e305c2b28696f3c1fbd7af22fdb" name="a3b175e305c2b28696f3c1fbd7af22fdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b175e305c2b28696f3c1fbd7af22fdb">&#9670;&#160;</a></span>is_valid_spread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::is_valid_spread </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a spread value is valid (in [0, 1]). </p>
+
+</div>
+</div>
+<a id="a4ba814108fbd0359d31055bb28801041" name="a4ba814108fbd0359d31055bb28801041"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ba814108fbd0359d31055bb28801041">&#9670;&#160;</a></span>is_valid_triangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::is_valid_triangle </td>
+          <td>(</td>
+          <td class="paramtype">const std::pair&lt; T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if three points form a valid (non-degenerate) triangle. </p>
+
+</div>
+</div>
+<a id="aa0de2b3a53859ae99e010a2b68a2178d" name="aa0de2b3a53859ae99e010a2b68a2178d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0de2b3a53859ae99e010a2b68a2178d">&#9670;&#160;</a></span>point_in_triangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::point_in_triangle </td>
+          <td>(</td>
+          <td class="paramtype">const std::pair&lt; T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::pair&lt; T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a point lies inside a triangle using barycentric coordinates. </p>
+
+</div>
+</div>
+<a id="ac13670a91dddf314821b99553b6fc6c6" name="ac13670a91dddf314821b99553b6fc6c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac13670a91dddf314821b99553b6fc6c6">&#9670;&#160;</a></span>point_on_line()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::point_on_line </td>
+          <td>(</td>
+          <td class="paramtype">const std::pair&lt; T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::tuple&lt; T, T, T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>line</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a point lies on a line. </p>
+<p class="formulaDsp">
+\[
+    a x + b y + c = 0
+\]
+</p>
+ 
 </div>
 </div>
 <a id="a34221a260e09d76e3eeabe3455f5ae93" name="a34221a260e09d76e3eeabe3455f5ae93"></a>
@@ -999,6 +1551,52 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a001fa48bf8457c4acef2bd51bdb3b684" name="a001fa48bf8457c4acef2bd51bdb3b684"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a001fa48bf8457c4acef2bd51bdb3b684">&#9670;&#160;</a></span>satisfies_triangle_inequality()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool rattrig::satisfies_triangle_inequality </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>q_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>q_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>q_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check the triangle inequality for three quadrances. </p>
 
 </div>
 </div>

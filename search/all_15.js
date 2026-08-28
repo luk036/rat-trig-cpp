@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['📐_20rat_20trig_20cpp_0',['📐 rat-trig-cpp',['../index.html#autotoc_md0',1,'']]]
+  ['why_20rational_20trigonometry_0',['Why Rational Trigonometry?',['../index.html#autotoc_md4',1,'']]],
+  ['with_20different_20types_1',['Working with Different Types',['../index.html#autotoc_md7',1,'']]],
+  ['working_20with_20different_20types_2',['Working with Different Types',['../index.html#autotoc_md7',1,'']]]
 ];

@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['validate_5fno_5foverflow_5fadd_0',['validate_no_overflow_add',['../namespacerattrig.html#a27fc0b0ac2a6dc904db9b10fb20f6279',1,'rattrig']]],
-  ['validate_5fno_5foverflow_5fmultiply_1',['validate_no_overflow_multiply',['../namespacerattrig.html#a03d3dc7b2a9b1e2244bdba599359a1ab',1,'rattrig']]],
-  ['validate_5fno_5foverflow_5fsquare_2',['validate_no_overflow_square',['../namespacerattrig.html#af5ddc724cc7731d69bfcf51b9da0d2b8',1,'rattrig']]],
-  ['validate_5fnon_5fnegative_3',['validate_non_negative',['../namespacerattrig.html#a2079db7c0a2ffa037be01a53e09e667e',1,'rattrig']]],
-  ['validate_5fnon_5fzero_4',['validate_non_zero',['../namespacerattrig.html#ad2bfa1f83b21c94427175a8c3abececd',1,'rattrig']]],
-  ['validate_5fvector_5fsize_5',['validate_vector_size',['../namespacerattrig.html#a963dc5d8e84e7d30888d60ead27b3dd0',1,'rattrig']]]
+  ['point2d_0',['point2d',['../structrattrig_1_1Point2D.html#af720e1ab31d4e7f17af200b352a28cb2',1,'rattrig::Point2D::Point2D() noexcept'],['../structrattrig_1_1Point2D.html#a42634186b7b2e42b0591febb0a2e94b4',1,'rattrig::Point2D::Point2D(const T &amp;x_, const T &amp;y_) noexcept']]],
+  ['point3d_1',['point3d',['../structrattrig_1_1Point3D.html#aabd5131fe0a25c1cf0aa600efdb26bfc',1,'rattrig::Point3D::Point3D() noexcept'],['../structrattrig_1_1Point3D.html#abab7f3727c0859fc1c37f2ce5407eb82',1,'rattrig::Point3D::Point3D(const T &amp;x_, const T &amp;y_, const T &amp;z_) noexcept']]],
+  ['point_5fin_5ftriangle_2',['point_in_triangle',['../namespacerattrig.html#aa0de2b3a53859ae99e010a2b68a2178d',1,'rattrig']]],
+  ['point_5fon_5fline_3',['point_on_line',['../namespacerattrig.html#ac13670a91dddf314821b99553b6fc6c6',1,'rattrig']]]
 ];

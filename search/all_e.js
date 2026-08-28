@@ -1,18 +1,11 @@
 var searchData=
 [
-  ['target_0',['Build and run the standalone target',['../index.html#autotoc_md11',1,'']]],
-  ['test_20suite_1',['Build and run test suite',['../index.html#autotoc_md12',1,'']]],
-  ['the_20documentation_2',['Build the documentation',['../index.html#autotoc_md14',1,'']]],
-  ['the_20standalone_20target_3',['Build and run the standalone target',['../index.html#autotoc_md11',1,'']]],
-  ['time_20evaluation_4',['Compile-time Evaluation',['../index.html#autotoc_md9',1,'']]],
-  ['tools_5',['Additional tools',['../index.html#autotoc_md16',1,'']]],
-  ['translate_5f2d_6',['translate_2d',['../namespacerattrig.html#a3c4ba055e5e13b38e3e4dabdb5a989de',1,'rattrig']]],
-  ['triangle_7',['Triangle',['../structrattrig_1_1Triangle.html',1,'rattrig']]],
-  ['trig_20cpp_8',['📐 rat-trig-cpp',['../index.html#autotoc_md0',1,'']]],
-  ['trigonom_2ehpp_9',['trigonom.hpp',['../trigonom_8hpp.html',1,'']]],
-  ['trigonomerror_10',['trigonomerror',['../classrattrig_1_1TrigonomError.html',1,'rattrig::TrigonomError'],['../classrattrig_1_1TrigonomError.html#a9d11c61bb118347e4989789c93cd7716',1,'rattrig::TrigonomError::TrigonomError()']]],
-  ['trigonometry_11',['Why Rational Trigonometry?',['../index.html#autotoc_md4',1,'']]],
-  ['triple_5fproduct_12',['triple_product',['../namespacerattrig.html#a2c20d9b75e407233c5430e1123645886',1,'rattrig']]],
-  ['triple_5fquad_5fformula_13',['triple_quad_formula',['../namespacerattrig.html#a3c037cb2cfc4794fedf60cecdd7fe2b5',1,'rattrig']]],
-  ['types_14',['Working with Different Types',['../index.html#autotoc_md7',1,'']]]
+  ['p1_0',['p1',['../structrattrig_1_1Triangle2D.html#a9881efdc7b4f50511a2d0e108372607f',1,'rattrig::Triangle2D::p1'],['../structrattrig_1_1Triangle3D.html#a60deee8c2b596c358c81d1741ffab52d',1,'rattrig::Triangle3D::p1']]],
+  ['p2_1',['p2',['../structrattrig_1_1Triangle2D.html#a5e0b51b365068e0ae3a11a1fed798c7b',1,'rattrig::Triangle2D::p2'],['../structrattrig_1_1Triangle3D.html#a22de7adbf26308149c69355098a76b9b',1,'rattrig::Triangle3D::p2']]],
+  ['p3_2',['p3',['../structrattrig_1_1Triangle2D.html#a306c17b581864ec94bd7faa38c8f3c9f',1,'rattrig::Triangle2D::p3'],['../structrattrig_1_1Triangle3D.html#a1833663884be2b0d76d84074150388fa',1,'rattrig::Triangle3D::p3']]],
+  ['point2d_3',['point2d',['../structrattrig_1_1Point2D.html',1,'rattrig::Point2D&lt; T &gt;'],['../structrattrig_1_1Point2D.html#af720e1ab31d4e7f17af200b352a28cb2',1,'rattrig::Point2D::Point2D() noexcept'],['../structrattrig_1_1Point2D.html#a42634186b7b2e42b0591febb0a2e94b4',1,'rattrig::Point2D::Point2D(const T &amp;x_, const T &amp;y_) noexcept']]],
+  ['point3d_4',['point3d',['../structrattrig_1_1Point3D.html',1,'rattrig::Point3D&lt; T &gt;'],['../structrattrig_1_1Point3D.html#aabd5131fe0a25c1cf0aa600efdb26bfc',1,'rattrig::Point3D::Point3D() noexcept'],['../structrattrig_1_1Point3D.html#abab7f3727c0859fc1c37f2ce5407eb82',1,'rattrig::Point3D::Point3D(const T &amp;x_, const T &amp;y_, const T &amp;z_) noexcept']]],
+  ['point_5fin_5ftriangle_5',['point_in_triangle',['../namespacerattrig.html#aa0de2b3a53859ae99e010a2b68a2178d',1,'rattrig']]],
+  ['point_5fon_5fline_6',['point_on_line',['../namespacerattrig.html#ac13670a91dddf314821b99553b6fc6c6',1,'rattrig']]],
+  ['projects_20and_20alternatives_7',['Related projects and alternatives',['../index.html#autotoc_md20',1,'']]]
 ];

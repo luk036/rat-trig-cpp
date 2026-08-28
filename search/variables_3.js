@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['q_5fab_0',['q_ab',['../structrattrig_1_1Triangle.html#ac5e6a5594731920333c6a9d8d1d5644d',1,'rattrig::Triangle']]],
-  ['q_5fbc_1',['q_bc',['../structrattrig_1_1Triangle.html#a30953c5e6629f982d74b679eb01a0ff0',1,'rattrig::Triangle']]],
-  ['q_5fca_2',['q_ca',['../structrattrig_1_1Triangle.html#a9ec5a1c8f2add8bc130847a3570875c5',1,'rattrig::Triangle']]],
-  ['quadrea_3',['quadrea',['../structrattrig_1_1Triangle.html#afe0f9774a9c6f39c8ad25c4774b183dc',1,'rattrig::Triangle']]]
+  ['p1_0',['p1',['../structrattrig_1_1Triangle2D.html#a9881efdc7b4f50511a2d0e108372607f',1,'rattrig::Triangle2D::p1'],['../structrattrig_1_1Triangle3D.html#a60deee8c2b596c358c81d1741ffab52d',1,'rattrig::Triangle3D::p1']]],
+  ['p2_1',['p2',['../structrattrig_1_1Triangle2D.html#a5e0b51b365068e0ae3a11a1fed798c7b',1,'rattrig::Triangle2D::p2'],['../structrattrig_1_1Triangle3D.html#a22de7adbf26308149c69355098a76b9b',1,'rattrig::Triangle3D::p2']]],
+  ['p3_2',['p3',['../structrattrig_1_1Triangle2D.html#a306c17b581864ec94bd7faa38c8f3c9f',1,'rattrig::Triangle2D::p3'],['../structrattrig_1_1Triangle3D.html#a1833663884be2b0d76d84074150388fa',1,'rattrig::Triangle3D::p3']]]
 ];
