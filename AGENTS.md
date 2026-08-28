@@ -76,7 +76,7 @@ Configure CMake with `-DUSE_SANITIZER=<Address | Memory | Undefined | Thread | L
 
 ### Static Analyzers
 
-Configure CMake with `-DUSE_STATIC_ANALYZER=<clang-tidy | iwyu | cppcheck>` to enable static analysis.
+Configure CMake with `-DRATTRIG_ENABLE_CLANG_TIDY=ON` and build the `clang-tidy` target to enable static analysis.
 
 ### Code Coverage (Ubuntu/Linux)
 
