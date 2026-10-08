@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14...3.22)
 
 project(
   RatTrig
-  VERSION 1.0.5
+  VERSION 1.0.6
   LANGUAGES CXX
 )
 
@@ -82,7 +82,7 @@ endif()
 # Fractions provides the exact rational arithmetic used by the public headers.
 CPMAddPackage(
   NAME Fractions
-  GIT_TAG v1.1.5
+  GIT_TAG v1.1.6
   GITHUB_REPOSITORY luk036/fractions-cpp
   OPTIONS "FRACTIONS_BUILD_TESTS OFF"
 )

@@ -69,10 +69,7 @@ static void bench_validation(ankerl::nanobench::Bench& b) {
 
 int main() {
     ankerl::nanobench::Bench bench;
-    bench.title("rat-trig-cpp benchmarks")
-        .unit("iteration")
-        .warmup(100)
-        .minEpochIterations(5000);
+    bench.title("rat-trig-cpp benchmarks").unit("iteration").warmup(100).minEpochIterations(5000);
 
     bench_triangle2d(bench);
     bench_validation(bench);
