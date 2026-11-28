@@ -19,42 +19,29 @@ This file provides context and guidelines for agentic coding agents operating in
 ### Build Everything
 
 ```bash
-# Build all targets at once (recommended for development)
-cmake -S all -B build
+# Single top-level CMakeLists.txt builds library + tests
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ```
 
 ### Build and Run Tests
 
 ```bash
-# Configure and build test suite
-cmake -S test -B build/test
-cmake --build build/test
-
 # Run tests via ctest
-cd build/test
-ctest --build-config Debug
+ctest --test-dir build -C Release --output-on-failure
 
 # Or run executable directly
-./build/test/RatTrigTests
+./build/Release/RatTrigTests
 ```
 
 ### Run a Single Test
 
 ```bash
 # Using doctest's test case filter (by name)
-./build/test/RatTrigTests --test-case="Test archimedes (int)"
+./build/Release/RatTrigTests --test-case="Test archimedes (int)"
 
-# Or bysubstring filter
-./build/test/RatTrigTests --test-case-prefix="archimedes"
-```
-
-### Build Standalone Executable
-
-```bash
-cmake -S standalone -B build/standalone
-cmake --build build/standalone
-./build/standalone/RatTrig --help
+# Or by substring filter
+./build/Release/RatTrigTests --test-case-prefix="archimedes"
 ```
 
 ### Code Formatting
@@ -72,7 +59,8 @@ cmake --build build/test --target fix-format
 
 ### Sanitizers
 
-Configure CMake with `-DUSE_SANITIZER=<Address | Memory | Undefined | Thread | Leak | 'Address;Undefined'>` to enable sanitizers.
+No CMake option; pass the flags yourself, e.g.
+`-DCMAKE_CXX_FLAGS="-fsanitize=address,undefined" -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined"`.
 
 ### Static Analyzers
 
@@ -81,10 +69,9 @@ Configure CMake with `-DRATTRIG_ENABLE_CLANG_TIDY=ON` and build the `clang-tidy`
 ### Code Coverage (Ubuntu/Linux)
 
 ```bash
-cmake -S test -B build -DENABLE_TEST_COVERAGE=1 -DCMAKE_BUILD_TYPE=Debug
+cmake -S . -B build -DRATTRIG_ENABLE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug
 cmake --build build
-cd build
-ctest --build-config Debug
+ctest --test-dir build --output-on-failure
 ```
 
 ---
@@ -316,9 +303,7 @@ TEST_CASE("Error handling - invalid vector size") {
 |------|---------|
 | `include/rattrig/trigonom.hpp` | Main library header (all functions) |
 | `test/source/test_trigonom.cpp` | Test suite |
-| `standalone/source/main.cpp` | Example standalone program |
 | `CMakeLists.txt` | Main build configuration |
-| `test/CMakeLists.txt` | Test build configuration |
 | `.clang-format` | Code formatting rules |
 
 ---
@@ -337,19 +322,18 @@ TEST_CASE("Error handling - invalid vector size") {
 
 ```bash
 # Quick edit-build-test cycle
-cmake -S test -B build/test && cmake --build build/test && ./build/test/RatTrigTests
+cmake --build build && ctest --test-dir build --output-on-failure
 ```
 
-### Building with All Subprojects
+### Building a Single Target
 
 ```bash
-# See all targets in IDE
-cmake -S all -B build
-cmake --build build
+# List all targets
+cmake --build build --target help
 
 # Run specific target
-./build/test/RatTrigTests
-./build/standalone/RatTrig --help
+./build/Release/RatTrigTests
+./build/Release/RatTrig --help
 ```
 
 ---

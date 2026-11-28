@@ -139,16 +139,6 @@ static_assert(d == 27, "Dot product should be 27");
 
 ## 🔧 Building and Running
 
-### Build and run the standalone target
-
-Use the following command to build and run the executable target.
-
-```bash
-cmake -S . -B build
-cmake --build build
-./build/RatTrig --help
-```
-
 ### Build and run test suite
 
 Use the following commands from the project's root directory to run the test suite.
@@ -202,7 +192,7 @@ To build the documentation locally, you will need Doxygen, jinja2 and Pygments i
 
 ### Build everything at once
 
-The single root `CMakeLists.txt` defines the library, standalone executable and tests, so a single configure step builds everything.
+The single root `CMakeLists.txt` defines the library and tests, so a single configure step builds everything.
 
 ```bash
 cmake -S . -B build
@@ -212,8 +202,6 @@ cmake --build build
 ./build/RatTrigTests
 # format code
 cmake --build build --target fix-format
-# run standalone
-./build/RatTrig --help
 # build docs (requires -DRATTRIG_BUILD_DOCS=ON at configure time)
 cmake --build build --target GenerateDocs
 ```
@@ -235,13 +223,13 @@ Code coverage (GCC/Clang, via gcovr) can be enabled by configuring CMake with `-
 Yes, however you will need to change the library type to an `INTERFACE` library as documented in the [CMakeLists.txt](CMakeLists.txt).
 See [here](https://github.com/TheLartians/StaticTypeInfo) for an example header-only library based on the template.
 
-> I don't need a standalone target / documentation. How can I get rid of it?
+> I don't need a documentation target. How can I get rid of it?
 
-Simply remove the standalone / documentation directory and according github workflow file.
+Simply remove the documentation directory and the according github workflow file.
 
-> Can I build the standalone and tests at the same time? / How can I tell my IDE about all subprojects?
+> Can I build the tests and docs at the same time? / How can I tell my IDE about all subprojects?
 
-All targets (library, standalone, tests, docs) are defined in the single root `CMakeLists.txt`, so a single `cmake -S . -B build` configuration exposes everything to your IDE at once.
+All targets (library, tests, docs) are defined in the single root `CMakeLists.txt`, so a single `cmake -S . -B build` configuration exposes everything to your IDE at once.
 
 > I see you are using `GLOB` to add source files in CMakeLists.txt. Isn't that evil?
 

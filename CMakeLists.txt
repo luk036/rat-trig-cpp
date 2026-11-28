@@ -31,7 +31,6 @@ endfunction()
 # Options
 # ---------------------------------------------------------------------------
 option(RATTRIG_BUILD_TESTS "Build tests" ON)
-option(RATTRIG_BUILD_STANDALONE "Build standalone executable" ON)
 option(RATTRIG_BUILD_DOCS "Build Doxygen documentation" OFF)
 option(RATTRIG_ENABLE_CLANG_TIDY "Enable clang-tidy analysis" OFF)
 option(RATTRIG_ENABLE_COVERAGE "Enable coverage reporting" OFF)
@@ -77,20 +76,6 @@ if(NOT fmt_FOUND)
     GITHUB_REPOSITORY fmtlib/fmt
     OPTIONS "FMT_INSTALL YES" # create an installable target
   )
-endif()
-
-# cxxopts < 3.3 uses uint8_t/intmax_t without including <cstdint>, which no longer compiles with
-# recent libstdc++. Resolve >= 3.3 before Fractions so its standalone example reuses this target
-# instead of pulling its own 3.2.1 pin.
-if(RATTRIG_BUILD_STANDALONE AND NOT TARGET cxxopts::cxxopts)
-  find_package(cxxopts 3.3 CONFIG QUIET)
-  if(NOT cxxopts_FOUND)
-    CPMAddPackage(
-      GITHUB_REPOSITORY jarro2783/cxxopts
-      VERSION 3.3.1
-      OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL NO"
-    )
-  endif()
 endif()
 
 # Fractions provides the exact rational arithmetic used by the public headers.
@@ -156,25 +141,6 @@ packageProject(
   COMPATIBILITY SameMajorVersion
   DEPENDENCIES "fmt 12.1.0" "Fractions 1.1.5"
 )
-
-# ---------------------------------------------------------------------------
-# Standalone executable
-# ---------------------------------------------------------------------------
-
-if(RATTRIG_BUILD_STANDALONE)
-  # keep third-party headers out of our -Werror scope
-  if(TARGET cxxopts::cxxopts)
-    get_target_property(CXXOPTS_INCLUDE_DIRS cxxopts::cxxopts INTERFACE_INCLUDE_DIRECTORIES)
-  endif()
-
-  add_executable(RatTrigStandalone standalone/source/main.cpp)
-  set_target_properties(RatTrigStandalone PROPERTIES OUTPUT_NAME "RatTrig" CXX_STANDARD 17)
-  target_include_directories(RatTrigStandalone SYSTEM PRIVATE ${CXXOPTS_INCLUDE_DIRS})
-  target_link_libraries(
-    RatTrigStandalone PRIVATE ${PROJECT_NAME}::${PROJECT_NAME} cxxopts::cxxopts ${SPECIFIC_LIBS}
-  )
-  target_enable_warnings(RatTrigStandalone)
-endif()
 
 # ---------------------------------------------------------------------------
 # Tests
@@ -274,12 +240,12 @@ endif()
 
 if(RATTRIG_ENABLE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
   # Every target that links the instrumented library also needs the coverage runtime at link time.
-  foreach(COVERAGE_TARGET RatTrig RatTrigTests RatTrigStandalone)
+  foreach(COVERAGE_TARGET RatTrig RatTrigTests)
     if(TARGET ${COVERAGE_TARGET})
       target_compile_options(${COVERAGE_TARGET} PRIVATE -O0 -g -fprofile-arcs -ftest-coverage)
     endif()
   endforeach()
-  foreach(COVERAGE_EXEC RatTrigTests RatTrigStandalone)
+  foreach(COVERAGE_EXEC RatTrigTests)
     if(TARGET ${COVERAGE_EXEC})
       target_link_options(${COVERAGE_EXEC} PRIVATE -fprofile-arcs -ftest-coverage)
     endif()
@@ -300,7 +266,7 @@ if(RATTRIG_ENABLE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleCla
       COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/coverage
       COMMAND
         ${GCOVR_PATH} --root ${PROJECT_SOURCE_DIR} --html-details
-        ${CMAKE_BINARY_DIR}/coverage/index.html --exclude test/ --exclude build/ ${extra_gcovr_args}
+        ${CMAKE_BINARY_DIR}/coverage/index.html --exclude test/ --exclude build/ --exclude-unreachable-branches --exclude-throw-branches ${extra_gcovr_args} --gcov-ignore-parse-errors=negative_hits.warn --gcov-ignore-parse-errors=suspicious_hits.warn
       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
       COMMENT "Generating coverage report in ${CMAKE_BINARY_DIR}/coverage/index.html"
     )
